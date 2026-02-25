@@ -1,3 +1,6 @@
+# 室合设计 | 适合即合适
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/LiebeChan/shihe-design)
 # 室合设计网站部署指南
 
 ## 方式一：Vercel 一键部署（推荐）
