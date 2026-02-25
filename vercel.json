@@ -1,13 +1,4 @@
 {
   "version": 2,
-  "name": "shihe-design",
-  "builds": [
-    {
-      "src": "**/*.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/$1" }
-  ]
+  "name": "shihe-design"
 }
