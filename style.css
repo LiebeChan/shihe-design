@@ -1,0 +1,261 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif; 
+  line-height: 1.6; 
+  color: #333;
+  background: #fff;
+}
+
+/* 导航 */
+.nav { 
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  background: rgba(255,255,255,0.95); 
+  backdrop-filter: blur(10px); 
+  z-index: 100; 
+  border-bottom: 1px solid #eee;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo { 
+  font-size: 1.5rem; 
+  font-weight: 700; 
+  text-decoration: none; 
+  color: #1a1a1a;
+}
+
+.nav-links { 
+  display: flex; 
+  gap: 1.5rem; 
+}
+
+.nav-links a { 
+  color: #666; 
+  text-decoration: none; 
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { 
+  color: #000; 
+}
+
+/* Hero */
+.hero { 
+  padding: 10rem 2rem 6rem; 
+  text-align: center; 
+  background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
+}
+
+.hero h1 { 
+  font-size: 3.5rem; 
+  margin-bottom: 1rem; 
+  letter-spacing: 0.3rem;
+  font-weight: 300;
+}
+
+.hero p { 
+  font-size: 1.25rem; 
+  color: #666; 
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.cta { 
+  display: inline-block; 
+  padding: 0.875rem 2.5rem; 
+  background: #1a1a1a; 
+  color: #fff; 
+  border-radius: 2rem; 
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.cta:hover { 
+  background: #333;
+  transform: translateY(-2px);
+}
+
+/* Section */
+.section { 
+  padding: 5rem 2rem; 
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+
+.section.gray { 
+  background: #f8f8f8;
+  max-width: 100%;
+}
+
+.section.gray > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section h2 { 
+  font-size: 2rem; 
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+}
+
+.subtitle { 
+  color: #999; 
+  margin-bottom: 3rem; 
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+/* Grid */
+.grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+  gap: 2rem;
+}
+
+.case-card { 
+  background: #fff; 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+  display: block;
+}
+
+.case-card:hover { 
+  transform: translateY(-4px); 
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.case-img {
+  height: 220px;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 0.9rem;
+}
+
+.case-content { 
+  padding: 1.5rem; 
+}
+
+.case-content h3 { 
+  font-size: 1.1rem; 
+  margin-bottom: 0.5rem; 
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.case-content p { 
+  color: #666; 
+  font-size: 0.9rem; 
+  line-height: 1.6;
+}
+
+/* Photo Grid */
+.photo-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1rem;
+}
+
+.photo-placeholder { 
+  aspect-ratio: 4/3; 
+  background: #e0e0e0; 
+  border-radius: 8px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  color: #999;
+  font-size: 0.85rem;
+}
+
+/* Dark Section */
+.dark { 
+  background: #1a1a1a !important; 
+  color: #fff !important;
+  max-width: 100% !important;
+}
+
+.dark > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-form { 
+  max-width: 500px; 
+  margin: 2rem auto 0;
+  display: flex; 
+  flex-direction: column; 
+  gap: 1rem; 
+}
+
+.contact-form input, 
+.contact-form textarea { 
+  padding: 0.875rem; 
+  border: 1px solid #444; 
+  border-radius: 4px; 
+  font-size: 1rem;
+  background: #222;
+  color: #fff;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #888;
+}
+
+.contact-form button { 
+  padding: 0.875rem 2rem; 
+  background: #fff; 
+  color: #1a1a1a; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.contact-form button:hover {
+  background: #f0f0f0;
+}
+
+/* Footer */
+.footer { 
+  text-align: center; 
+  padding: 4rem 2rem; 
+  background: #f5f5f5; 
+  color: #666;
+}
+
+.footer p:first-child {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.footer p:last-child {
+  font-size: 0.85rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .nav { flex-direction: column; gap: 1rem; }
+  .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .photo-grid { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-template-columns: 1fr; }
+}
