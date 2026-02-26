@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>社区微型咖啡店 - 室合设计</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .detail-header { padding: 8rem 2rem 3rem; background: #f8f8f8; text-align: center; }
+    .detail-header h1 { font-size: 2.5rem; margin-bottom: 1rem; font-weight: 300; }
+    .detail-header .meta { color: #666; font-size: 0.95rem; }
+    .detail-content { max-width: 1000px; margin: 0 auto; padding: 3rem 2rem; }
+    .detail-content p { margin-bottom: 1.5rem; line-height: 1.8; color: #444; }
+    .gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 3rem 0; }
+    .gallery img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 8px; }
+    .back-link { display: inline-block; margin-top: 2rem; color: #666; text-decoration: none; }
+    .back-link:hover { color: #000; }
+    @media (max-width: 768px) { .gallery { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/#contact">联系我</a>
+    </div>
+  </nav>
+
+  <header class="detail-header">
+    <h1>社区微型咖啡店</h1>
+    <p class="meta">项目类型：商业空间 | 状态：已落成</p>
+  </header>
+
+  <main class="detail-content">
+    <p><strong>设计理念：</strong></p>
+    <p>亲切没有距离感，是我们的初衷</p>
+    <p>这是一家位于社区中的小型咖啡店，面积仅30平米。设计强调与社区的亲和感，采用温暖的木质调性和开放式布局，让每位进店的客人都能感受到家的温馨。</p>
+    
+    <div class="gallery">
+      <img src="images/咖啡_-_室合设计_{no.咖啡}.jpg" alt="店面">
+      <img src="images/咖啡_-_室合设计_{no.咖啡} (1).jpg" alt="室内">
+      <img src="images/咖啡_-_室合设计_{no.咖啡} (2).jpg" alt="吧台">
+      <img src="images/咖啡_-_室合设计_{no.咖啡} (3).jpg" alt="座位">
+    </div>
+    
+    <a href="/" class="back-link">← 返回首页</a>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>
