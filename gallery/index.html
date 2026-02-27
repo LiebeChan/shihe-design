@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行行摄摄 - 室合设计</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .detail-header { 
+      padding: 8rem 2rem 3rem; 
+      background: #f8f8f8; 
+      text-align: center; 
+    }
+    .detail-header h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 1rem; 
+      font-weight: 300; 
+    }
+    .detail-header .meta { 
+      color: #666; 
+      font-size: 0.95rem; 
+    }
+    .gallery-content { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 3rem 2rem; 
+    }
+    .gallery-intro {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: #444;
+      line-height: 1.8;
+    }
+    .gallery-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+      gap: 1.5rem; 
+      margin: 3rem 0; 
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      background: #e0e0e0;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .back-link { 
+      display: inline-block; 
+      margin-top: 2rem; 
+      color: #666; 
+      text-decoration: none; 
+    }
+    .back-link:hover { 
+      color: #000; 
+    }
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/#contact">联系�?/a>
+    </div>
+  </nav>
+
+  <header class="detail-header">
+    <h1>行行摄摄</h1>
+    <p class="meta">用镜头记录空间之�?/p>
+  </header>
+
+  <main class="gallery-content">
+    <p class="gallery-intro">
+      行走于城市之间，捕捉光影与空间的对话�?br>
+      每一张照片都是一次与建筑、与生活的相遇�?    </p>
+    
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄}.jpg" alt="行行摄摄 01">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (1).jpg" alt="行行摄摄 02">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (2).jpg" alt="行行摄摄 03">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (3).jpg" alt="行行摄摄 04">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (4).jpg" alt="行行摄摄 05">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (5).jpg" alt="行行摄摄 06">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (6).jpg" alt="行行摄摄 07">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (7).jpg" alt="行行摄摄 08">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (8).jpg" alt="行行摄摄 09">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (9).jpg" alt="行行摄摄 10">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (10).jpg" alt="行行摄摄 11">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (11).jpg" alt="行行摄摄 12">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (12).jpg" alt="行行摄摄 13">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (13).jpg" alt="行行摄摄 14">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (14).jpg" alt="行行摄摄 15">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (15).jpg" alt="行行摄摄 16">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (16).jpg" alt="行行摄摄 17">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (17).jpg" alt="行行摄摄 18">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (18).jpg" alt="行行摄摄 19">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (19).jpg" alt="行行摄摄 20">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (20).jpg" alt="行行摄摄 21">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (21).jpg" alt="行行摄摄 22">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (22).jpg" alt="行行摄摄 23">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (23).jpg" alt="行行摄摄 24">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (24).jpg" alt="行行摄摄 25">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (25).jpg" alt="行行摄摄 26">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (26).jpg" alt="行行摄摄 27">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (27).jpg" alt="行行摄摄 28">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (28).jpg" alt="行行摄摄 29">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (29).jpg" alt="行行摄摄 30">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (30).jpg" alt="行行摄摄 31">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (31).jpg" alt="行行摄摄 32">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (32).jpg" alt="行行摄摄 33">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (33).jpg" alt="行行摄摄 34">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (34).jpg" alt="行行摄摄 35">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (35).jpg" alt="行行摄摄 36">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (36).jpg" alt="行行摄摄 37">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (37).jpg" alt="行行摄摄 38">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (38).jpg" alt="行行摄摄 39">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (39).jpg" alt="行行摄摄 40">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (40).jpg" alt="行行摄摄 41">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (41).jpg" alt="行行摄摄 42">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (42).jpg" alt="行行摄摄 43">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (43).jpg" alt="行行摄摄 44">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (44).jpg" alt="行行摄摄 45">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (45).jpg" alt="行行摄摄 46">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (46).jpg" alt="行行摄摄 47">
+      </div>
+      <div class="gallery-item">
+        <img src="../images/project_17/行行摄摄_-_室合设计_{no.行行摄摄} (47).jpg" alt="行行摄摄 48">
+      </div>
+    </div>
+    
+    <a href="/" class="back-link">�?返回首页</a>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>
