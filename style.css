@@ -27,6 +27,15 @@ body {
   font-weight: 700; 
   text-decoration: none; 
   color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-img {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 .nav-links { 
