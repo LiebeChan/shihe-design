@@ -29,7 +29,7 @@
     <div class="hero-buttons">
       <a href="/about" class="cta secondary">关于我</a>
       <a href="/money" class="cta secondary">关于钱</a>
-      <a href="/go" class="cta">开始设计 →</a>
+      <a href="#" class="cta" onclick="startDesign(); return false;">开始设计 →</a>
     </div>
   </section>
 
@@ -251,6 +251,62 @@
       <p style="margin-top: 2rem; font-style: italic; color: #999;">—— 陈昱，室合设计</p>
     </div>
   </section>
+
+    <!-- 二维码弹窗 -->
+  <div id="qrModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 9999; justify-content: center; align-items: center;">
+    <div style="background: white; padding: 2rem; border-radius: 12px; text-align: center; max-width: 320px; position: relative;">
+      <button onclick="closeQRModal()" style="position: absolute; top: 10px; right: 15px; border: none; background: none; font-size: 1.5rem; cursor: pointer;">×</button>
+      <h3 style="margin-bottom: 1rem;">扫码加我微信</h3>
+      <p style="color: #666; font-size: 0.9rem; margin-bottom: 1rem;">长按识别二维码，或直接搜索微信号：<strong>liebechen_n</strong></p>
+      <img src="images/qr/wechat-qr.jpg" alt="微信二维码" style="width: 200px; height: 200px; border-radius: 8px;">
+      <p style="color: #999; font-size: 0.8rem; margin-top: 1rem;">如有装修需求，欢迎聊聊~</p>
+    </div>
+  </div>
+
+  <script>
+    // 检测是否为微信浏览器
+    function isWeChatBrowser() {
+      return /MicroMessenger/i.test(navigator.userAgent);
+    }
+
+    // 检测是否为移动端
+    function isMobile() {
+      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // 开始设计按钮点击处理
+    function startDesign() {
+      if (isWeChatBrowser()) {
+        // 微信内：尝试唤起添加好友（需要微信认证，这里显示提示）
+        showQRModal();
+        // 备选：尝试跳转微信名片页（需配置个人微信链接）
+        // window.location.href = 'weixin://contacts/profile/liebechen_n';
+      } else if (isMobile()) {
+        // 手机其他浏览器：显示二维码
+        showQRModal();
+      } else {
+        // PC端：显示二维码
+        showQRModal();
+      }
+    }
+
+    // 显示二维码弹窗
+    function showQRModal() {
+      document.getElementById('qrModal').style.display = 'flex';
+    }
+
+    // 关闭二维码弹窗
+    function closeQRModal() {
+      document.getElementById('qrModal').style.display = 'none';
+    }
+
+    // 点击弹窗背景关闭
+    document.getElementById('qrModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeQRModal();
+      }
+    });
+  </script>
 
   <footer class="footer">
     <p>室合设计 © 2026</p>
