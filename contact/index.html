@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我 - 室合设计</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* 联系页面样式 */
+    .contact-header { 
+      padding: 8rem 2rem 3rem; 
+      background: #f8f8f8; 
+      text-align: center; 
+    }
+    .contact-header h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 1rem; 
+      font-weight: 300; 
+    }
+    .contact-header .subtitle {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .contact-content { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 3rem 2rem; 
+    }
+    
+    /* 表单区域 */
+    .forms-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 768px) {
+      .forms-section {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .form-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .form-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+      font-weight: 500;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #555;
+      font-size: 0.9rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #1a1a1a;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 0.875rem;
+      background: #1a1a1a;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 0.5rem;
+    }
+    .submit-btn:hover {
+      background: #333;
+    }
+    .submit-btn:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+    
+    /* 成功提示 */
+    .success-message {
+      display: none;
+      background: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .success-message.show {
+      display: block;
+    }
+    
+    /* FAQ区域 */
+    .faq-section {
+      margin-top: 4rem;
+    }
+    .faq-section h2 {
+      font-size: 1.75rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      background: #fff;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 500;
+      color: #1a1a1a;
+      transition: background 0.3s;
+    }
+    .faq-question:hover {
+      background: #f8f8f8;
+    }
+    .faq-question::after {
+      content: '+';
+      font-size: 1.5rem;
+      color: #666;
+      transition: transform 0.3s;
+    }
+    .faq-item.active .faq-question::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s;
+      color: #555;
+      line-height: 1.8;
+    }
+    .faq-item.active .faq-answer {
+      padding: 0 1.5rem 1.5rem;
+      max-height: 300px;
+    }
+    
+    /* 联系方式 */
+    .contact-info {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .contact-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .contact-method {
+      text-align: center;
+    }
+    .contact-method .icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    .contact-method p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .back-link { 
+      display: inline-block; 
+      margin-top: 3rem; 
+      color: #666; 
+      text-decoration: none; 
+    }
+    .back-link:hover { 
+      color: #000; 
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+    </div>
+  </nav>
+
+  <header class="contact-header">
+    <h1>联系我</h1>
+    <p class="subtitle">期待与你一起打造理想的空间</p>
+  </header>
+
+  <main class="contact-content">
+    <!-- 联系方式 -->
+    <section class="contact-info">
+      <h3>其他联系方式</h3>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="icon">📱</div>
+          <p>微信：扫码添加</p>
+        </div>
+        <div class="contact-method">
+          <div class="icon">📧</div>
+          <p>邮箱：y-2cells@outlook.com</p>
+        </div>
+        <div class="contact-method">
+          <div class="icon">📍</div>
+          <p>北京 · 可全国远程服务</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 表单区域 -->
+    <section class="forms-section">
+      <!-- 免费咨询表单 -->
+      <div class="form-card">
+        <h3>免费咨询</h3>
+        <form id="consultForm">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="您的姓名 *" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="联系电话 *" required pattern="[0-9]{11}" title="请输入11位手机号">
+          </div>
+          <div class="form-group">
+            <input type="text" name="area" placeholder="房屋面积（㎡）">
+          </div>
+          <div class="form-group">
+            <textarea name="message" placeholder="简单描述您的需求" rows="3"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">提交咨询</button>
+        </form>
+        <div class="success-message" id="consultSuccess">
+          ✅ 提交成功，我们会尽快联系您！
+        </div>
+      </div>
+
+      <!-- 预约设计表单 -->
+      <div class="form-card">
+        <h3>预约设计</h3>
+        <form id="bookingForm">
+          <div class="form-group">
+            <input type="text" name="name" placeholder="您的姓名 *" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" name="phone" placeholder="联系电话 *" required pattern="[0-9]{11}">
+          </div>
+          <div class="form-group">
+            <input type="text" name="wechat" placeholder="微信号">
+          </div>
+          <div class="form-group">
+            <input type="text" name="address" placeholder="房屋地址（区域）">
+          </div>
+          <div class="form-group">
+            <input type="text" name="area" placeholder="房屋面积（㎡）">
+          </div>
+          <div class="form-group">
+            <select name="budget">
+              <option value="">预算范围</option>
+              <option value="10-20万">10-20万</option>
+              <option value="20-30万">20-30万</option>
+              <option value="30-50万">30-50万</option>
+              <option value="50万以上">50万以上</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select name="timeline">
+              <option value="">预计装修时间</option>
+              <option value="1个月内">1个月内</option>
+              <option value="1-3个月">1-3个月</option>
+              <option value="3-6个月">3-6个月</option>
+              <option value="半年以上">半年以上</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" name="style" placeholder="喜欢的风格（如：现代、法式、原木等）">
+          </div>
+          <div class="form-group">
+            <textarea name="needs" placeholder="其他需求或问题" rows="3"></textarea>
+          </div>
+          <button type="submit" class="submit-btn">预约设计</button>
+        </form>
+        <div class="success-message" id="bookingSuccess">
+          ✅ 提交成功，设计师会尽快与您联系！
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+      <h2>常见问题</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <div class="faq-question">Q：设计费怎么收？</div>
+          <div class="faq-answer">
+            家装设计费根据项目复杂程度，一般为200-500元/㎡。具体报价需要了解房屋情况和设计需求后确定。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q：设计周期多久？</div>
+          <div class="faq-answer">
+            一般家装项目设计周期为4-8周，包括方案设计、效果图制作和施工图深化。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q：设计服务包含哪些内容？</div>
+          <div class="faq-answer">
+            包含平面方案设计、效果图、全套施工图、材料清单、陪同选材、施工节点交底、软装搭配建议等全流程服务。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q：可以只做设计不施工吗？</div>
+          <div class="faq-answer">
+            可以。我们主要提供设计服务，施工可以由您自行选择施工队，我们负责设计落地配合。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q：可以只做软装设计吗？</div>
+          <div class="faq-answer">
+            可以。针对精装房或已完工的硬装，我们提供软装搭配设计服务。
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Q：服务范围是哪些城市？</div>
+          <div class="faq-answer">
+            base 北京，可承接全国项目。异地项目可通过线上沟通+关键节点现场服务的方式完成。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="text-align: center;">
+      <a href="/" class="back-link">← 返回首页</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+
+  <script>
+    // FAQ 展开/收起
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        item.classList.toggle('active');
+      });
+    });
+
+    // 表单提交处理
+    function handleSubmit(formId, successId, formType) {
+      const form = document.getElementById(formId);
+      const successMsg = document.getElementById(successId);
+      
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        // 存储到本地（实际项目中可以发送到服务器）
+        const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
+        submissions.push({
+          type: formType,
+          data: data,
+          time: new Date().toISOString()
+        });
+        localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
+        
+        // 显示成功消息
+        successMsg.classList.add('show');
+        form.reset();
+        
+        // 尝试发送邮件（使用 mailto）
+        const subject = formType === 'consult' ? '【免费咨询】新提交' : '【预约设计】新提交';
+        const body = Object.entries(data)
+          .filter(([_, v]) => v)
+          .map(([k, v]) => `${k}: ${v}`)
+          .join('\n');
+        
+        // 打开邮件客户端
+        window.location.href = `mailto:y-2cells@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        
+        // 3秒后隐藏成功消息
+        setTimeout(() => {
+          successMsg.classList.remove('show');
+        }, 5000);
+      });
+    }
+
+    handleSubmit('consultForm', 'consultSuccess', 'consult');
+    handleSubmit('bookingForm', 'bookingSuccess', 'booking');
+  </script>
+</body>
+</html>

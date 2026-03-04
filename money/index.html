@@ -3,64 +3,261 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>关于钱 - 室合设计</title>
+  <title>服务介绍 - 室合设计</title>
   <link rel="stylesheet" href="../style.css">
   <style>
-    .money-header { 
+    .service-header { 
       padding: 8rem 2rem 3rem; 
       background: #f8f8f8; 
       text-align: center; 
     }
-    .money-header h1 { 
+    .service-header h1 { 
       font-size: 2.5rem; 
       margin-bottom: 1rem; 
       font-weight: 300; 
     }
-    .money-header .subtitle {
+    .service-header .subtitle {
       color: #666;
       font-size: 1.1rem;
     }
-    .money-content { 
-      max-width: 1000px; 
+    .service-content { 
+      max-width: 1200px; 
       margin: 0 auto; 
       padding: 3rem 2rem; 
     }
-    .money-section {
-      margin-bottom: 4rem;
+    
+    /* 服务流程 */
+    .process-section {
+      margin-bottom: 5rem;
     }
-    .money-section h2 {
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 1.5rem;
-      color: #333;
-      border-left: 3px solid #333;
-      padding-left: 1rem;
+    .process-section h2 {
+      font-size: 1.75rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 300;
     }
-    .price-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 2rem 0;
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+    .step {
       background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-      border-radius: 8px;
-      overflow: hidden;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: center;
+      position: relative;
     }
-    .price-table th,
-    .price-table td {
-      padding: 1rem 1.5rem;
-      text-align: left;
-      border-bottom: 1px solid #eee;
-    }
-    .price-table th {
+    .step-number {
+      width: 48px;
+      height: 48px;
       background: #1a1a1a;
       color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 0 auto 1rem;
+    }
+    .step h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+      color: #1a1a1a;
+    }
+    .step p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .step-tag {
+      display: inline-block;
+      background: #f0f0f0;
+      color: #555;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+    }
+    
+    /* 设计费说明 */
+    .pricing-section {
+      margin-bottom: 5rem;
+    }
+    .pricing-section h2 {
+      font-size: 1.75rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+    .pricing-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    @media (max-width: 768px) {
+      .pricing-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+    .pricing-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .pricing-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+    .price {
+      font-size: 2.5rem;
+      font-weight: 300;
+      color: #1a1a1a;
+      margin-bottom: 1.5rem;
+    }
+    .price span {
+      font-size: 1rem;
+      color: #666;
+    }
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin: 1.5rem 0;
+    }
+    .pricing-card li {
+      padding: 0.5rem 0;
+      color: #555;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .pricing-card li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #1a1a1a;
+      font-weight: bold;
+    }
+    .pricing-card .cta {
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .pricing-note {
+      text-align: center;
+      color: #999;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+    
+    /* 付款节点 */
+    .payment-section {
+      margin-bottom: 5rem;
+    }
+    .payment-section h2 {
+      font-size: 1.75rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+    .payment-schedule {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .payment-item {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .payment-time {
+      flex: 1;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+    .payment-amount {
+      flex: 1;
+      text-align: center;
+      font-size: 1.25rem;
+      color: #1a1a1a;
       font-weight: 500;
     }
-    .price-table tr:last-child td {
-      border-bottom: none;
+    .payment-desc {
+      flex: 1;
+      text-align: right;
+      color: #666;
+      font-size: 0.9rem;
     }
-    .price-table tr:hover {
+    @media (max-width: 600px) {
+      .payment-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+      }
+      .payment-time,
+      .payment-amount,
+      .payment-desc {
+        flex: none;
+        text-align: center;
+      }
+    }
+    
+    /* 服务亮点 */
+    .highlights-section {
       background: #f8f8f8;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      margin-bottom: 3rem;
+    }
+    .highlights-section h2 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    .highlight-item {
+      text-align: center;
+    }
+    .highlight-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .highlight-item h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+    .highlight-item p {
+      font-size: 0.85rem;
+      color: #666;
+    }
+    
+    /* 原有样式 */
+    .money-section {
+      margin-bottom: 4rem;
     }
     .highlight-box {
       background: #f0f0f0;
@@ -69,7 +266,7 @@
       margin: 2rem 0;
     }
     .highlight-box p {
-      margin: 0;
+      margin: 0.75rem 0;
       line-height: 1.8;
     }
     .back-link { 
@@ -86,6 +283,20 @@
       font-size: 0.9rem;
       margin-top: 1rem;
     }
+    .pricing-image-container {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .pricing-image-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      cursor: zoom-in;
+    }
   </style>
 </head>
 <body>
@@ -94,41 +305,154 @@
     <div class="nav-links">
       <a href="/">首页</a>
       <a href="/about">关于我</a>
-      <a href="/#contact">联系我</a>
+      <a href="/contact">联系我</a>
     </div>
   </nav>
 
-  <header class="money-header">
-    <h1>关于钱</h1>
+  <header class="service-header">
+    <h1>服务介绍</h1>
     <p class="subtitle">透明报价，没有隐形消费</p>
   </header>
 
-  <main class="money-content">
-    <div class="money-section">
-      <h2>设计服务收费标准</h2>
-      <div class="pricing-image-container" style="background: #f5f5f5; border-radius: 8px; padding: 1rem; text-align: center;">
-        <img src="../images/pricing-2026.png" alt="室合设计 2026 住宅类设计服务说明" style="max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); cursor: zoom-in;" onclick="window.open(this.src, '_blank')">
-        <p class="note" style="margin-top: 0.8rem; color: #999;">👆 点击图片可查看原图</p>
+  <main class="service-content">
+    <!-- 服务流程 -->
+    <section class="process-section">
+      <h2>设计服务流程</h2>
+      <div class="process-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>初步沟通</h3>
+          <p>了解您的需求、预算、时间规划</p>
+          <span class="step-tag">免费</span>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>现场量房</h3>
+          <p>实地测量，深入了解房屋情况</p>
+          <span class="step-tag">支付定金</span>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>方案设计</h3>
+          <p>提供2-3稿平面方案供选择</p>
+          <span class="step-tag">支付50%设计费</span>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>深化设计</h3>
+          <p>效果图+全套施工图制作</p>
+          <span class="step-tag">支付50%设计费</span>
+        </div>
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>施工配合</h3>
+          <p>关键节点现场交底，确保设计落地</p>
+          <span class="step-tag">免费</span>
+        </div>
+        <div class="step">
+          <div class="step-number">6</div>
+          <h3>软装搭配</h3>
+          <p>家具、灯具、配饰选购建议</p>
+          <span class="step-tag">免费</span>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="money-section">
-      <h2>为什么选我们</h2>
-      <div class="highlight-box">
-        <p><strong>无隐形消费</strong> — 签约前明确所有费用，过程中不随意增项</p>
-        <p><strong>分期付款</strong> — 按进度节点付款，降低你的资金风险</p>
-        <p><strong>修改到满意</strong> — 方案阶段不限修改次数，直到你满意为止</p>
-        <p><strong>售后保障</strong> — 一次服务终生好友，生活中遇到的不便或想法，均可提供相应的解决方案</p>
+    <!-- 付款节点 -->
+    <section class="payment-section">
+      <h2>付款方式</h2>
+      <div class="payment-schedule">
+        <div class="payment-item">
+          <span class="payment-time">签约时</span>
+          <span class="payment-amount">50%</span>
+          <span class="payment-desc">方案设计阶段</span>
+        </div>
+        <div class="payment-item">
+          <span class="payment-time">方案确定后</span>
+          <span class="payment-amount">50%</span>
+          <span class="payment-desc">深化设计阶段</span>
+        </div>
       </div>
-    </div>
+    </section>
 
-    <div class="money-section">
-      <h2>开始聊聊</h2>
-      <p>每个家都不一样，具体报价需要根据你的户型、需求和预算来定。</p>
-      <p style="margin-top: 1.5rem;"><a href="/go" class="cta">开始设计 →</a></p>
-    </div>
+    <!-- 服务亮点 -->
+    <section class="highlights-section">
+      <h2>为什么选择室合设计</h2>
+      <div class="highlights-grid">
+        <div class="highlight-item">
+          <div class="highlight-icon">💎</div>
+          <h4>无隐形消费</h4>
+          <p>签约前明确所有费用</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">📅</div>
+          <h4>分期付款</h4>
+          <p>按进度节点付款</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🎨</div>
+          <h4>修改到满意</h4>
+          <p>方案阶段不限修改次数</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-icon">🤝</div>
+          <h4>售后保障</h4>
+          <p>一次服务终生好友</p>
+        </div>
+      </div>
+    </section>
 
-    <a href="/" class="back-link">← 返回首页</a>
+    <!-- 设计费说明 -->
+    <section class="pricing-section">
+      <h2>设计费标准</h2>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <h3>住宅设计</h3>
+          <div class="price">200-500<span>元/㎡</span></div>
+          <ul>
+            <li>平面方案设计</li>
+            <li>效果图制作</li>
+            <li>全套施工图</li>
+            <li>材料清单</li>
+            <li>陪同选材</li>
+            <li>施工配合</li>
+            <li>软装搭配</li>
+          </ul>
+          <a href="/contact" class="cta">咨询报价</a>
+        </div>
+        <div class="pricing-card">
+          <h3>商业空间</h3>
+          <div class="price">面议</div>
+          <p style="color: #666; margin: 1.5rem 0;">根据项目规模、复杂程度、设计深度等因素综合报价</p>
+          <ul>
+            <li>品牌定位分析</li>
+            <li>商业动线规划</li>
+            <li>空间形象设计</li>
+            <li>专业施工图</li>
+            <li>施工全程配合</li>
+          </ul>
+          <a href="/contact" class="cta">咨询报价</a>
+        </div>
+      </div>
+      <p class="pricing-note">* 具体报价以实际项目情况为准，欢迎咨询了解详情</p>
+      
+      <!-- 原有价格图片 -->
+      <div class="pricing-image-container" style="margin-top: 3rem;">
+        <img src="../images/pricing-2026.png" alt="室合设计 2026 住宅类设计服务说明" onclick="window.open(this.src, '_blank')">
+        <p class="note">👆 点击图片可查看原图</p>
+      </div>
+    </section>
+
+    <!-- 开始聊聊 -->
+    <section class="money-section" style="text-align: center; padding: 3rem 0;">
+      <h2 style="font-size: 1.75rem; margin-bottom: 1.5rem; font-weight: 300;">开始聊聊</h2>
+      <p style="color: #666; margin-bottom: 2rem;">每个家都不一样，具体报价需要根据你的户型、需求和预算来定。</p>
+      <a href="/contact" class="cta">联系我们 →</a>
+    </section>
+
+    <div style="text-align: center;">
+      <a href="/" class="back-link">← 返回首页</a>
+    </div>
   </main>
 
   <footer class="footer">
