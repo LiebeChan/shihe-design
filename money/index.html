@@ -38,8 +38,13 @@
     }
     .process-steps {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
+    }
+    @media (max-width: 1024px) {
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
     @media (max-width: 768px) {
       .process-steps {
@@ -329,28 +334,40 @@
           <div class="step-number">2</div>
           <h3>现场量房</h3>
           <p>实地测量，深入了解房屋情况</p>
-          <span class="step-tag">支付定金</span>
+          <span class="step-tag">1500元</span>
         </div>
         <div class="step">
           <div class="step-number">3</div>
-          <h3>方案设计</h3>
-          <p>提供2-3稿平面方案供选择</p>
-          <span class="step-tag">支付50%设计费</span>
+          <h3>设计签约</h3>
+          <p>确定合作意向，签订设计合同</p>
+          <span class="step-tag">签约</span>
         </div>
         <div class="step">
           <div class="step-number">4</div>
-          <h3>深化设计</h3>
-          <p>效果图+全套施工图制作</p>
-          <span class="step-tag">支付50%设计费</span>
+          <h3><a href="/portfolio/plan-design" style="color: inherit; text-decoration: underline;">平面布置设计</a></h3>
+          <p>提供2-3稿平面方案供选择</p>
+          <span class="step-tag">支付40%</span>
         </div>
         <div class="step">
           <div class="step-number">5</div>
+          <h3>方案设计</h3>
+          <p>效果图+材料方案</p>
+          <span class="step-tag">支付30%</span>
+        </div>
+        <div class="step">
+          <div class="step-number">6</div>
+          <h3>深化设计</h3>
+          <p>材料+全套施工图制作</p>
+          <span class="step-tag">支付30%</span>
+        </div>
+        <div class="step">
+          <div class="step-number">7</div>
           <h3>施工配合</h3>
           <p>关键节点现场交底，确保设计落地</p>
           <span class="step-tag">免费</span>
         </div>
         <div class="step">
-          <div class="step-number">6</div>
+          <div class="step-number">8</div>
           <h3>软装搭配</h3>
           <p>家具、灯具、配饰选购建议</p>
           <span class="step-tag">免费</span>
@@ -363,14 +380,24 @@
       <h2>付款方式</h2>
       <div class="payment-schedule">
         <div class="payment-item">
-          <span class="payment-time">签约时</span>
-          <span class="payment-amount">50%</span>
-          <span class="payment-desc">方案设计阶段</span>
+          <span class="payment-time">现场量房</span>
+          <span class="payment-amount">1500元</span>
+          <span class="payment-desc">量房定金</span>
         </div>
         <div class="payment-item">
-          <span class="payment-time">方案确定后</span>
-          <span class="payment-amount">50%</span>
-          <span class="payment-desc">深化设计阶段</span>
+          <span class="payment-time">平面布置设计确认</span>
+          <span class="payment-amount">40%</span>
+          <span class="payment-desc">约2000元起</span>
+        </div>
+        <div class="payment-item">
+          <span class="payment-time">方案设计确认</span>
+          <span class="payment-amount">30%</span>
+          <span class="payment-desc">效果图+材料方案</span>
+        </div>
+        <div class="payment-item">
+          <span class="payment-time">施工图确认</span>
+          <span class="payment-amount">30%</span>
+          <span class="payment-desc">全套施工图交付</span>
         </div>
       </div>
     </section>
@@ -408,7 +435,7 @@
       <div class="pricing-cards">
         <div class="pricing-card">
           <h3>住宅设计</h3>
-          <div class="price">200-500<span>元/㎡</span></div>
+          <div class="price">280-520<span>元/㎡</span></div>
           <ul>
             <li>平面方案设计</li>
             <li>效果图制作</li>
