@@ -205,14 +205,103 @@
       font-size: 0.9rem;
     }
     
-    .back-link { 
-      display: inline-block; 
-      margin-top: 3rem; 
-      color: #666; 
-      text-decoration: none; 
+    /* 微信弹窗 */
+    .wechat-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
     }
-    .back-link:hover { 
-      color: #000; 
+    .wechat-modal.show {
+      display: flex;
+    }
+    .wechat-modal-content {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      max-width: 320px;
+      position: relative;
+      animation: modalFadeIn 0.3s;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .wechat-modal-content h4 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+    .wechat-qr {
+      width: 200px;
+      height: 200px;
+      background: #f5f5f5;
+      border-radius: 8px;
+      margin: 0 auto 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    .wechat-qr img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .wechat-modal-content p {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      color: #666;
+      transition: all 0.3s;
+    }
+    .close-modal:hover {
+      background: #e0e0e0;
+    }
+    
+    .wechat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #07C160;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      margin-top: 1rem;
+    }
+    .wechat-btn:hover {
+      background: #06AD56;
+      transform: translateY(-2px);
+    }
+    .wechat-btn::before {
+      content: '💬';
+      font-size: 1.2rem;
     }
   </style>
 </head>
@@ -239,6 +328,7 @@
         <div class="contact-method">
           <div class="icon">📱</div>
           <p>微信：扫码添加</p>
+          <button class="wechat-btn" onclick="openWechatModal()">微信沟通</button>
         </div>
         <div class="contact-method">
           <div class="icon">📧</div>
@@ -379,6 +469,18 @@
     <p>室合设计 © 2026</p>
   </footer>
 
+  <!-- 微信扫码弹窗 -->
+  <div class="wechat-modal" id="wechatModal" onclick="closeWechatModal(event)">
+    <div class="wechat-modal-content" onclick="event.stopPropagation()">
+      <button class="close-modal" onclick="closeWechatModal()">×</button>
+      <h4>添加微信，直接沟通</h4>
+      <div class="wechat-qr">
+        <img src="../images/wechat-qr.jpg" alt="微信二维码" onerror="this.style.display='none'; this.parentElement.innerHTML='请上传微信二维码图片<br>images/wechat-qr.jpg'; this.parentElement.style.padding='2rem'; this.parentElement.style.textAlign='center';">
+      </div>
+      <p>扫描二维码，添加设计师微信<br>一对一咨询更快捷</p>
+    </div>
+  </div>
+
   <script>
     // FAQ 展开/收起
     document.querySelectorAll('.faq-question').forEach(q => {
@@ -431,6 +533,26 @@
 
     handleSubmit('consultForm', 'consultSuccess', 'consult');
     handleSubmit('bookingForm', 'bookingSuccess', 'booking');
+
+    // 微信弹窗控制
+    function openWechatModal() {
+      document.getElementById('wechatModal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeWechatModal(event) {
+      if (!event || event.target.id === 'wechatModal' || event.target.classList.contains('close-modal')) {
+        document.getElementById('wechatModal').classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    }
+    
+    // ESC键关闭弹窗
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeWechatModal();
+      }
+    });
   </script>
 </body>
 </html>
