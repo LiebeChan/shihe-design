@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设计交付 - 室合设计</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .deliverables-header { 
+      padding: 8rem 2rem 3rem; 
+      background: #f8f8f8; 
+      text-align: center; 
+    }
+    .deliverables-header h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 1rem; 
+      font-weight: 300; 
+    }
+    .deliverables-header .subtitle {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .deliverables-content { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 3rem 2rem; 
+    }
+    
+    /* 阶段时间线 */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e0e0e0;
+    }
+    
+    .phase {
+      position: relative;
+      margin-bottom: 4rem;
+      padding-left: 2rem;
+    }
+    .phase::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      width: 12px;
+      height: 12px;
+      background: #1a1a1a;
+      border-radius: 50%;
+      margin-left: -5px;
+    }
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .phase-number {
+      width: 48px;
+      height: 48px;
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+    .phase-title {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #1a1a1a;
+    }
+    .phase-desc {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    
+    /* 交付内容网格 */
+    .deliverables-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    @media (max-width: 1024px) {
+      .deliverables-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .deliverables-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .deliverable-item {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .deliverable-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .deliverable-image {
+      width: 100%;
+      aspect-ratio: 16/10;
+      object-fit: cover;
+      background: #f5f5f5;
+      display: block;
+    }
+    .deliverable-info {
+      padding: 1.25rem;
+    }
+    .deliverable-name {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+    .deliverable-desc {
+      font-size: 0.9rem;
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    /* 图片占位符 */
+    .image-placeholder {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    /* 上传提示 */
+    .upload-notice {
+      background: #fff8e1;
+      border: 1px dashed #ffc107;
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .upload-notice p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .back-link { 
+      display: inline-block; 
+      margin-top: 3rem; 
+      color: #666; 
+      text-decoration: none; 
+    }
+    .back-link:hover { 
+      color: #000; 
+    }
+    
+    /* 灯箱 */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+    </div>
+  </nav>
+
+  <header class="deliverables-header">
+    <h1>设计交付</h1>
+    <p class="subtitle">每个阶段，我都交付什么</p>
+  </header>
+
+  <main class="deliverables-content">
+    <!-- 上传提示 -->
+    <div class="upload-notice">
+      <p>📸 将各阶段交付物截图保存到 <code>images/deliverables/</code> 文件夹，页面会自动显示</p>
+    </div>
+
+    <div class="timeline">
+      <!-- 阶段1：签合同 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">1</div>
+          <h2 class="phase-title">签合同</h2>
+        </div>
+        <p class="phase-desc">明确双方权利义务，设计服务正式开启</p>
+        <div class="deliverables-grid">
+          <div class="deliverable-item">
+            <div class="image-placeholder">设计合同</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">设计服务合同</div>
+              <div class="deliverable-desc">明确设计范围、费用、付款节点及双方权责</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">项目启动函</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">项目启动函</div>
+              <div class="deliverable-desc">项目基本信息、时间节点、联系方式汇总</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 阶段2：平面布局设计 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">2</div>
+          <h2 class="phase-title">平面布局设计</h2>
+        </div>
+        <p class="phase-desc">空间规划的核心，确定功能分区与动线</p>
+        <div class="deliverables-grid">
+          <div class="deliverable-item">
+            <div class="image-placeholder">平面方案</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">2-3稿平面方案</div>
+              <div class="deliverable-desc">不同思路的空间布局对比</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">动线分析</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">动线分析图</div>
+              <div class="deliverable-desc">生活动线、访客动线、家务动线规划</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">收纳规划</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">收纳规划方案</div>
+              <div class="deliverable-desc">全屋收纳空间分布与容量计算</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 阶段3：方案设计 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">3</div>
+          <h2 class="phase-title">方案设计</h2>
+        </div>
+        <p class="phase-desc">确定风格方向，预见未来家的样子</p>
+        <div class="deliverables-grid">
+          <div class="deliverable-item">
+            <div class="image-placeholder">效果图</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">效果图</div>
+              <div class="deliverable-desc">客厅、卧室、厨卫等主要空间效果呈现</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">材料方案</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">材料搭配方案</div>
+              <div class="deliverable-desc">主材、辅材选样及搭配建议</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">色彩方案</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">色彩方案</div>
+              <div class="deliverable-desc">空间色彩搭配与材质肌理组合</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 阶段4：装修成本规划 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">4</div>
+          <h2 class="phase-title">装修成本规划</h2>
+        </div>
+        <p class="phase-desc">预算心中有数，避免超支陷阱</p>
+        <div class="deliverables-grid">
+          <div class="deliverable-item">
+            <div class="image-placeholder">预算表</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">装修预算表</div>
+              <div class="deliverable-desc">硬装、主材、家具、家电分项预算</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">采购清单</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">主材采购清单</div>
+              <div class="deliverable-desc">品牌、规格、数量、参考价格一览</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 阶段5：施工图设计 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">5</div>
+          <h2 class="phase-title">施工图设计</h2>
+        </div>
+        <p class="phase-desc">施工落地的依据，确保设计精准还原</p>
+        <div class="deliverables-grid">
+          <div class="deliverable-item">
+            <div class="image-placeholder">施工图</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">全套施工图</div>
+              <div class="deliverable-desc">平面、立面、剖面、节点详图</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">水电图</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">水电定位图</div>
+              <div class="deliverable-desc">开关、插座、给排水点位精确标注</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">吊顶图</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">吊顶施工图</div>
+              <div class="deliverable-desc">吊顶造型、灯具定位、空调风口</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 阶段6：软装选购 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">6</div>
+          <h2 class="phase-title">软装选购</h2>
+        </div>
+        <p class="phase-desc">家具配饰落地，空间灵魂注入</p>
+        <div class="deliverables-grid">
+          <div class="deliverable-item">
+            <div class="image-placeholder">软装清单</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">软装采购清单</div>
+              <div class="deliverable-desc">家具、灯具、窗帘、配饰选购建议</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">搭配方案</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">软装搭配方案</div>
+              <div class="deliverable-desc">色彩、材质、风格的协调统一</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">购买链接</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">购买链接/渠道</div>
+              <div class="deliverable-desc">推荐购买渠道及参考价格</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 阶段7：入住伴手礼 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-number">7</div>
+          <h2 class="phase-title">入住伴手礼</h2>
+        </div>
+        <p class="phase-desc">项目收官，开启新生活</p>
+        <div class="deliverables-grid">
+          <div class="deliverable-item">
+            <div class="image-placeholder">竣工相册</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">竣工实景相册</div>
+              <div class="deliverable-desc">记录从毛坯到完工的全过程</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">使用手册</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">家居使用手册</div>
+              <div class="deliverable-desc">设备使用说明、保养建议、售后信息</div>
+            </div>
+          </div>
+          <div class="deliverable-item">
+            <div class="image-placeholder">伴手礼</div>
+            <div class="deliverable-info">
+              <div class="deliverable-name">入住伴手礼</div>
+              <div class="deliverable-desc">一份心意，祝贺乔迁之喜</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="/" class="back-link">← 返回首页</a>
+    </div>
+  </main>
+
+  <!-- 灯箱 -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img src="" alt="放大查看" id="lightboxImg">
+  </div>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+
+  <script>
+    // 灯箱功能
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // ESC键关闭灯箱
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
