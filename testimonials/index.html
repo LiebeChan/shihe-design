@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>客户好评 - 室合设计</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .testimonials-header { 
+      padding: 8rem 2rem 3rem; 
+      background: #f8f8f8; 
+      text-align: center; 
+    }
+    .testimonials-header h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 1rem; 
+      font-weight: 300; 
+    }
+    .testimonials-header .subtitle {
+      color: #666;
+      font-size: 1.1rem;
+    }
+    .testimonials-content { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 3rem 2rem; 
+    }
+    
+    /* 好评网格 */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    @media (max-width: 1024px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .testimonial-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .testimonial-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: #f5f5f5;
+      cursor: pointer;
+      display: block;
+    }
+    
+    .back-link { 
+      display: inline-block; 
+      margin-top: 3rem; 
+      color: #666; 
+      text-decoration: none; 
+    }
+    .back-link:hover { 
+      color: #000; 
+    }
+    
+    /* 灯箱 */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+    </div>
+  </nav>
+
+  <header class="testimonials-header">
+    <h1>客户好评</h1>
+    <p class="subtitle">真实反馈，来自每一个信任我的客户</p>
+  </header>
+
+  <main class="testimonials-content">
+    <!-- 好评展示网格 -->
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <img src="../images/testimonials/%E5%AE%A2%E6%88%B7%E5%A5%BD%E8%AF%841.png" alt="客户好评1" class="testimonial-image" onclick="openLightbox(this.src)">
+      </div>
+      <div class="testimonial-card">
+        <img src="../images/testimonials/%E5%AE%A2%E6%88%B7%E5%A5%BD%E8%AF%842.png" alt="客户好评2" class="testimonial-image" onclick="openLightbox(this.src)">
+      </div>
+      <div class="testimonial-card">
+        <img src="../images/testimonials/%E5%AE%A2%E6%88%B7%E5%A5%BD%E8%AF%843.png" alt="客户好评3" class="testimonial-image" onclick="openLightbox(this.src)">
+      </div>
+      <div class="testimonial-card">
+        <img src="../images/testimonials/%E5%AE%A2%E6%88%B7%E5%A5%BD%E8%AF%844.png" alt="客户好评4" class="testimonial-image" onclick="openLightbox(this.src)">
+      </div>
+      <div class="testimonial-card">
+        <img src="../images/testimonials/%E5%AE%A2%E6%88%B7%E5%A5%BD%E8%AF%845.png" alt="客户好评5" class="testimonial-image" onclick="openLightbox(this.src)">
+      </div>
+      <div class="testimonial-card">
+        <img src="../images/testimonials/%E5%AE%A2%E6%88%B7%E5%A5%BD%E8%AF%846.png" alt="客户好评6" class="testimonial-image" onclick="openLightbox(this.src)">
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="/money" class="back-link">← 返回服务介绍</a>
+    </div>
+  </main>
+
+  <!-- 灯箱 -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img src="" alt="放大查看" id="lightboxImg">
+  </div>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+
+  <script>
+    // 灯箱功能
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // ESC键关闭灯箱
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>
