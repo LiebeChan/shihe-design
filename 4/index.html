@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -37,19 +37,43 @@
     <p>本项目最大的挑战是客厅中央有一根无法拆除的结构梁。我们将其转化为设计亮点——通过木质包覆和灯光设计，让这根梁成为空间的视觉中心，营造出美式工业风的粗犷美感。</p>
     
     <div class="gallery">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）}.jpg" alt="客厅全景">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (1).jpg" alt="梁体设计细节">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (2).jpg" alt="餐厅区域">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (3).jpg" alt="卧室空间">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (4).jpg" alt="空间细节">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (5).jpg" alt="装饰元素">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (6).jpg" alt="家具搭配">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (7).jpg" alt="整体效果">
-      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (8).jpg" alt="新增视角">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）}.jpg" alt="客厅全景" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (1).jpg" alt="梁体设计细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (2).jpg" alt="餐厅区域" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (3).jpg" alt="卧室空间" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (4).jpg" alt="空间细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (5).jpg" alt="装饰元素" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (6).jpg" alt="家具搭配" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (7).jpg" alt="整体效果" onclick="openLightbox(this.src)">
+      <img src="../images/project_2/一根梁的家（美式）_-_室合设计_{no.一根梁的家（美式）} (8).jpg" alt="新增视角" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
   </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // ESC key to close
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 
   <footer class="footer">
     <p>室合设计 © 2026</p>

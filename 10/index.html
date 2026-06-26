@@ -43,18 +43,41 @@
     <p>• 儿童房：可调节高度的书桌，随孩子成长变化</p>
     
     <div class="gallery">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）}.png" alt="客厅">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (1).png" alt="收纳柜">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (2).png" alt="餐厅">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (3).png" alt="卧室">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (4).png" alt="儿童房">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (5).png" alt="书房">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (6).png" alt="厨房">
-      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (7).png" alt="细节">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）}.png" alt="客厅" onclick="openLightbox(this.src)">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (1).png" alt="收纳柜" onclick="openLightbox(this.src)">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (2).png" alt="餐厅" onclick="openLightbox(this.src)">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (3).png" alt="卧室" onclick="openLightbox(this.src)">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (4).png" alt="儿童房" onclick="openLightbox(this.src)">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (5).png" alt="书房" onclick="openLightbox(this.src)">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (6).png" alt="厨房" onclick="openLightbox(this.src)">
+      <img src="../images/project_4/极致收纳与舒适度平衡的家（现代）_-_室合设计_{no.极致收纳与舒适度平衡的家（现代）} (7).png" alt="细节" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
   </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 
   <footer class="footer">
     <p>室合设计 © 2026</p>

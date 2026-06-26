@@ -43,14 +43,38 @@
     <p>• 成本控制：工厂预制，现场安装</p>
     
     <div class="gallery">
-      <img src="../images/project_14/miomi_-_室合设计_{no.miomi}.jpg" alt="店面">
-      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (1).jpg" alt="室内">
-      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (2).jpg" alt="展示区">
-      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (3).jpg" alt="货架">
-      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (4).jpg" alt="细节">
+      <img src="../images/project_14/miomi_-_室合设计_{no.miomi}.jpg" alt="店面" onclick="openLightbox(this.src)">
+      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (1).jpg" alt="室内" onclick="openLightbox(this.src)">
+      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (2).jpg" alt="展示区" onclick="openLightbox(this.src)">
+      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (3).jpg" alt="货架" onclick="openLightbox(this.src)">
+      <img src="../images/project_14/miomi_-_室合设计_{no.miomi} (4).jpg" alt="细节" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
   </main>
 
   <footer class="footer">

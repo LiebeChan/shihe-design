@@ -43,16 +43,40 @@
     <p>• 绿植软装：低成本高效果</p>
     
     <div class="gallery">
-      <img src="../images/project_16/低成本_-_室合设计_{no.低成本}.png" alt="办公区">
-      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (1).png" alt="会议室">
-      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (2).png" alt="休闲区">
-      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (3).png" alt="工位">
-      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (4).png" alt="入口">
-      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (5).png" alt="细节">
-      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (6).png" alt="夜景">
+      <img src="../images/project_16/低成本_-_室合设计_{no.低成本}.png" alt="办公区" onclick="openLightbox(this.src)">
+      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (1).png" alt="会议室" onclick="openLightbox(this.src)">
+      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (2).png" alt="休闲区" onclick="openLightbox(this.src)">
+      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (3).png" alt="工位" onclick="openLightbox(this.src)">
+      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (4).png" alt="入口" onclick="openLightbox(this.src)">
+      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (5).png" alt="细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_16/低成本_-_室合设计_{no.低成本} (6).png" alt="夜景" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
   </main>
 
   <footer class="footer">

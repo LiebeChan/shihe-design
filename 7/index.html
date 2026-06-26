@@ -43,16 +43,40 @@
     <p>• 水景：室内水景设计，增添灵动</p>
     
     <div class="gallery">
-      <img src="../images/project_10/金融街_-_室合设计_{no.金融街}.png" alt="主中庭">
-      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (1).png" alt="入口">
-      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (2).png" alt="挑空">
-      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (3).png" alt="走廊">
-      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (4).png" alt="扶梯">
-      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (5).png" alt="天花">
-      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (6).png" alt="细节">
+      <img src="../images/project_10/金融街_-_室合设计_{no.金融街}.png" alt="主中庭" onclick="openLightbox(this.src)">
+      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (1).png" alt="入口" onclick="openLightbox(this.src)">
+      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (2).png" alt="挑空" onclick="openLightbox(this.src)">
+      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (3).png" alt="走廊" onclick="openLightbox(this.src)">
+      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (4).png" alt="扶梯" onclick="openLightbox(this.src)">
+      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (5).png" alt="天花" onclick="openLightbox(this.src)">
+      <img src="../images/project_10/金融街_-_室合设计_{no.金融街} (6).png" alt="细节" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
   </main>
 
   <footer class="footer">

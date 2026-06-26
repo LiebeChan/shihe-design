@@ -43,17 +43,41 @@
     <p>• 灯光：动态照明，模拟波光粼粼</p>
     
     <div class="gallery">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东}.jpg" alt="主中庭">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (1).jpg" alt="入口">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (2).jpg" alt="挑空">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (3).jpg" alt="走廊">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (4).jpg" alt="扶梯">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (5).jpg" alt="天花">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (6).jpg" alt="细节">
-      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (7).jpg" alt="夜景">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东}.jpg" alt="主中庭" onclick="openLightbox(this.src)">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (1).jpg" alt="入口" onclick="openLightbox(this.src)">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (2).jpg" alt="挑空" onclick="openLightbox(this.src)">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (3).jpg" alt="走廊" onclick="openLightbox(this.src)">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (4).jpg" alt="扶梯" onclick="openLightbox(this.src)">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (5).jpg" alt="天花" onclick="openLightbox(this.src)">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (6).jpg" alt="细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_9/大江东_-_室合设计_{no.大江东} (7).jpg" alt="夜景" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
   </main>
 
   <footer class="footer">

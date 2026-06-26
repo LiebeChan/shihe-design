@@ -43,17 +43,41 @@
     <p>• 互动空间：多层级挑空平台，创造社交场景</p>
     
     <div class="gallery">
-      <img src="../images/project_18/东安湖_-室合设计{no.东安湖}.jpg" alt="主中庭">
-      <img src="../images/project_18/微信图片_20240420023235.jpg" alt="入口">
-      <img src="../images/project_18/微信图片_20240420023300.jpg" alt="挑空">
-      <img src="../images/project_18/微信图片_20240420023349.jpg" alt="走廊">
-      <img src="../images/project_18/微信图片_20240420023358.jpg" alt="扶梯">
-      <img src="../images/project_18/微信图片_20240420023424.jpg" alt="天花">
-      <img src="../images/project_18/微信图片_20240420023516.jpg" alt="细节">
-      <img src="../images/project_18/微信图片_20240420023521.jpg" alt="夜景">
+      <img src="../images/project_18/东安湖_-室合设计{no.东安湖}.jpg" alt="主中庭" onclick="openLightbox(this.src)">
+      <img src="../images/project_18/微信图片_20240420023235.jpg" alt="入口" onclick="openLightbox(this.src)">
+      <img src="../images/project_18/微信图片_20240420023300.jpg" alt="挑空" onclick="openLightbox(this.src)">
+      <img src="../images/project_18/微信图片_20240420023349.jpg" alt="走廊" onclick="openLightbox(this.src)">
+      <img src="../images/project_18/微信图片_20240420023358.jpg" alt="扶梯" onclick="openLightbox(this.src)">
+      <img src="../images/project_18/微信图片_20240420023424.jpg" alt="天花" onclick="openLightbox(this.src)">
+      <img src="../images/project_18/微信图片_20240420023516.jpg" alt="细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_18/微信图片_20240420023521.jpg" alt="夜景" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
   </main>
 
   <footer class="footer">

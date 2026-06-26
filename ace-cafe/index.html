@@ -43,16 +43,40 @@
     <p>• 艺术融合：与798艺术区氛围呼应</p>
     
     <div class="gallery">
-      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe}.jpg" alt="店面">
-      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (1).jpg" alt="室内">
-      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (2).jpg" alt="吧台">
-      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (3).jpg" alt="座位区">
-      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (4).jpg" alt="机车展示">
-      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (5).jpg" alt="细节">
-      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (6).jpg" alt="夜景">
+      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe}.jpg" alt="店面" onclick="openLightbox(this.src)">
+      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (1).jpg" alt="室内" onclick="openLightbox(this.src)">
+      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (2).jpg" alt="吧台" onclick="openLightbox(this.src)">
+      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (3).jpg" alt="座位区" onclick="openLightbox(this.src)">
+      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (4).jpg" alt="机车展示" onclick="openLightbox(this.src)">
+      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (5).jpg" alt="细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_12/Ace_Cafe_-_室合设计_{no.Ace_Cafe} (6).jpg" alt="夜景" onclick="openLightbox(this.src)">
     </div>
     
     <a href="/" class="back-link">← 返回首页</a>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
   </main>
 
   <footer class="footer">

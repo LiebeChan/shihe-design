@@ -41,20 +41,44 @@
     <p>• 色彩以白色为主，搭配原木色家具，营造清新自然的居住氛围</p>
     
     <div class="gallery">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）}.jpg" alt="客厅全景">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (1).jpg" alt="卧室视角">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (2).jpg" alt="厨房空间">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (3).jpg" alt="收纳细节">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (4).jpg" alt="空间布局">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (5).jpg" alt="家具细节">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (6).jpg" alt="装饰元素">
-      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (7).jpg" alt="整体效果">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）}.jpg" alt="客厅全景" onclick="openLightbox(this.src)">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (1).jpg" alt="卧室视角" onclick="openLightbox(this.src)">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (2).jpg" alt="厨房空间" onclick="openLightbox(this.src)">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (3).jpg" alt="收纳细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (4).jpg" alt="空间布局" onclick="openLightbox(this.src)">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (5).jpg" alt="家具细节" onclick="openLightbox(this.src)">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (6).jpg" alt="装饰元素" onclick="openLightbox(this.src)">
+      <img src="../images/project_1/39㎡住宅（现代）_-_室合设计_{no.39㎡住宅（现代）} (7).jpg" alt="整体效果" onclick="openLightbox(this.src)">
     </div>
     
     <p><strong>业主反馈：</strong></p>
     <p>"完全没想到39平能住得这么舒服，朋友来家里都说像60平！"</p>
     
     <a href="/" class="back-link">← 返回首页</a>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
   </main>
 
   <footer class="footer">
