@@ -312,5 +312,41 @@
   <footer class="footer">
     <p>室合设计 © 2026</p>
   </footer>
+
+  <!-- 访客提醒 -->
+  <script>
+    // Server酱 SendKey
+    const SERVER_CHAN_KEY = 'SCT390261TuBqDwEgEcbI8yWaYO17CSbP4';
+    
+    // 检查今天是否已经推送过
+    const today = new Date().toDateString();
+    const lastNotify = localStorage.getItem('shihe_lastNotify');
+    
+    // 如果是新访客（今天第一次访问）
+    if (lastNotify !== today) {
+      // 获取访问信息
+      const page = window.location.pathname || '首页';
+      const referrer = document.referrer || '直接访问';
+      const time = new Date().toLocaleString('zh-CN');
+      
+      // 发送推送
+      fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        body: 'title=' + encodeURIComponent('室合设计网站有新访客') + 
+              '&desp=' + encodeURIComponent('访问页面：' + page + 
+              '\n来源：' + referrer + 
+              '\n时间：' + time + 
+              '\n设备：' + navigator.userAgent.slice(0, 50) + '...')
+      }).then(() => {
+        console.log('访客提醒已发送');
+      }).catch(e => {
+        console.log('推送失败', e);
+      });
+      
+      // 记录今天已通知
+      localStorage.setItem('shihe_lastNotify', today);
+    }
+  </script>
 </body>
 </html>
