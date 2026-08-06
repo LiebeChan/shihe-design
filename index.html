@@ -326,18 +326,88 @@
     if (lastNotify !== today) {
       // 获取访问信息
       const page = window.location.pathname || '首页';
-      const referrer = document.referrer || '直接访问';
+      const rawReferrer = document.referrer || '';
       const time = new Date().toLocaleString('zh-CN');
+      
+      // 解析来源渠道
+      function getSource(referrer) {
+        if (!referrer) return '直接访问（收藏夹/输入网址/扫码）';
+        if (referrer.includes('baidu.com')) return '百度搜索';
+        if (referrer.includes('google.com')) return 'Google搜索';
+        if (referrer.includes('bing.com')) return 'Bing搜索';
+        if (referrer.includes('sogou.com')) return '搜狗搜索';
+        if (referrer.includes('so.com')) return '360搜索';
+        if (referrer.includes('weixin.qq.com') || referrer.includes('wechat')) return '微信内打开';
+        if (referrer.includes('xiaohongshu.com')) return '小红书';
+        if (referrer.includes('zhihu.com')) return '知乎';
+        if (referrer.includes('weibo.com')) return '微博';
+        if (referrer.includes('douyin.com') || referrer.includes('tiktok')) return '抖音';
+        if (referrer.includes('qq.com')) return 'QQ/腾讯系';
+        if (referrer.includes('facebook.com')) return 'Facebook';
+        if (referrer.includes('twitter.com') || referrer.includes('x.com')) return 'Twitter/X';
+        if (referrer.includes('instagram.com')) return 'Instagram';
+        return '外部链接：' + referrer.split('/')[2];
+      }
+      
+      const source = getSource(rawReferrer);
+      
+      // 获取设备信息
+      function getDeviceInfo() {
+        const ua = navigator.userAgent;
+        let device = '未知设备';
+        let os = '未知系统';
+        
+        // 判断设备类型
+        if (/iPhone/i.test(ua)) device = 'iPhone';
+        else if (/iPad/i.test(ua)) device = 'iPad';
+        else if (/Android/i.test(ua)) device = 'Android手机';
+        else if (/Windows/i.test(ua)) device = 'Windows电脑';
+        else if (/Mac/i.test(ua)) device = 'Mac电脑';
+        else device = '其他设备';
+        
+        // 判断操作系统
+        if (/Windows NT 10/i.test(ua)) os = 'Windows 10/11';
+        else if (/Windows NT 6.1/i.test(ua)) os = 'Windows 7';
+        else if (/Mac OS X/i.test(ua)) os = 'macOS';
+        else if (/Android/i.test(ua)) os = 'Android';
+        else if (/iOS/i.test(ua) || /iPhone|iPad/i.test(ua)) os = 'iOS';
+        else os = '其他系统';
+        
+        return device + ' | ' + os;
+      }
+      
+      const deviceInfo = getDeviceInfo();
+      
+      // 获取搜索关键词（如果是搜索引擎）
+      function getSearchKeyword(referrer) {
+        if (!referrer) return '';
+        try {
+          const url = new URL(referrer);
+          const keyword = url.searchParams.get('wd') || // 百度
+                         url.searchParams.get('q') ||   // Google/Bing
+                         url.searchParams.get('query') || // 其他
+                         url.searchParams.get('keyword');
+          return keyword ? '\n搜索词：' + decodeURIComponent(keyword) : '';
+        } catch (e) {
+          return '';
+        }
+      }
+      
+      const searchKeyword = getSearchKeyword(rawReferrer);
       
       // 发送推送
       fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
         method: 'POST',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
         body: 'title=' + encodeURIComponent('室合设计网站有新访客') + 
-              '&desp=' + encodeURIComponent('访问页面：' + page + 
-              '\n来源：' + referrer + 
-              '\n时间：' + time + 
-              '\n设备：' + navigator.userAgent.slice(0, 50) + '...')
+              '&desp=' + encodeURIComponent(
+                '【访问页面】' + page + 
+                '\n【来源渠道】' + source + 
+                searchKeyword +
+                '\n【访问时间】' + time + 
+                '\n【设备信息】' + deviceInfo +
+                '\n【原始来源】' + (rawReferrer || '无')
+              )
       }).then(() => {
         console.log('访客提醒已发送');
       }).catch(e => {
