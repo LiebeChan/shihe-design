@@ -662,5 +662,302 @@
       }
     }).observe(document, { subtree: true, childList: true });
   </script>
+
+  <!-- 热力图与停留时长追踪 -->
+  <script>
+    // 热力图和停留时长统计系统
+    const HeatmapTracker = {
+      // 点击记录
+      clicks: [],
+      
+      // 页面停留记录
+      pageDurations: {},
+      
+      // 初始化
+      init() {
+        this.recordPageDuration();
+        this.trackClicks();
+        this.trackScroll();
+        this.sendReport();
+      },
+      
+      // 记录页面停留时长
+      recordPageDuration() {
+        const pageStartTime = Date.now();
+        const pageUrl = window.location.pathname;
+        
+        // 页面离开时记录时长
+        window.addEventListener('beforeunload', () => {
+          const duration = Math.floor((Date.now() - pageStartTime) / 1000);
+          this.savePageDuration(pageUrl, duration);
+        });
+        
+        // 切换页面时也记录（单页应用）
+        let lastUrl = location.href;
+        new MutationObserver(() => {
+          const url = location.href;
+          if (url !== lastUrl) {
+            const duration = Math.floor((Date.now() - pageStartTime) / 1000);
+            this.savePageDuration(pageUrl, duration);
+            lastUrl = url;
+          }
+        }).observe(document, { subtree: true, childList: true });
+      },
+      
+      // 保存页面停留时长
+      savePageDuration(pageUrl, duration) {
+        const durations = this.getStoredDurations();
+        if (!durations[pageUrl]) {
+          durations[pageUrl] = [];
+        }
+        durations[pageUrl].push({
+          duration: duration,
+          time: new Date().toISOString()
+        });
+        // 只保留最近10次记录
+        if (durations[pageUrl].length > 10) {
+          durations[pageUrl].shift();
+        }
+        sessionStorage.setItem('shihe_pageDurations', JSON.stringify(durations));
+      },
+      
+      // 获取存储的停留时长
+      getStoredDurations() {
+        const stored = sessionStorage.getItem('shihe_pageDurations');
+        return stored ? JSON.parse(stored) : {};
+      },
+      
+      // 追踪点击位置（热力图）
+      trackClicks() {
+        document.addEventListener('click', (e) => {
+          // 记录点击位置（相对于视口）
+          const click = {
+            x: Math.round(e.clientX),
+            y: Math.round(e.clientY),
+            pageX: Math.round(e.pageX),
+            pageY: Math.round(e.pageY),
+            target: this.getElementDescription(e.target),
+            time: new Date().toLocaleTimeString('zh-CN'),
+            page: window.location.pathname
+          };
+          
+          this.clicks.push(click);
+          
+          // 只保留最近50次点击
+          if (this.clicks.length > 50) {
+            this.clicks.shift();
+          }
+          
+          // 保存到sessionStorage
+          sessionStorage.setItem('shihe_clicks', JSON.stringify(this.clicks));
+        });
+      },
+      
+      // 获取元素描述
+      getElementDescription(element) {
+        if (!element) return '未知元素';
+        
+        // 优先使用有意义的标识
+        if (element.id) return '#' + element.id;
+        if (element.className && typeof element.className === 'string') {
+          const className = element.className.split(' ')[0];
+          if (className) return '.' + className;
+        }
+        
+        // 使用标签名+文本内容
+        const tagName = element.tagName.toLowerCase();
+        const text = element.textContent ? element.textContent.trim().substring(0, 20) : '';
+        
+        if (text) {
+          return tagName + '(' + text + ')';
+        }
+        
+        // 使用父元素信息
+        if (element.parentElement) {
+          const parentTag = element.parentElement.tagName.toLowerCase();
+          return tagName + ' > ' + parentTag;
+        }
+        
+        return tagName;
+      },
+      
+      // 追踪滚动深度
+      trackScroll() {
+        let maxScroll = 0;
+        let scrollStartTime = Date.now();
+        
+        window.addEventListener('scroll', () => {
+          const scrollPercent = Math.round(
+            (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100
+          );
+          if (scrollPercent > maxScroll) {
+            maxScroll = scrollPercent;
+          }
+        });
+        
+        // 页面离开时记录最大滚动深度
+        window.addEventListener('beforeunload', () => {
+          const scrollTime = Math.floor((Date.now() - scrollStartTime) / 1000);
+          sessionStorage.setItem('shihe_maxScroll', JSON.stringify({
+            percent: maxScroll,
+            time: scrollTime,
+            page: window.location.pathname
+          }));
+        });
+      },
+      
+      // 格式化点击数据为热力图描述
+      formatClickHeatmap() {
+        const clicks = JSON.parse(sessionStorage.getItem('shihe_clicks') || '[]');
+        if (clicks.length === 0) return '无点击记录';
+        
+        // 按页面分组
+        const pageClicks = {};
+        clicks.forEach(click => {
+          if (!pageClicks[click.page]) {
+            pageClicks[click.page] = [];
+          }
+          pageClicks[click.page].push(click);
+        });
+        
+        // 格式化输出
+        let result = '';
+        for (const [page, pageClickList] of Object.entries(pageClicks)) {
+          const pageName = this.getPageName(page);
+          result += '\n【' + pageName + '】' + pageClickList.length + '次点击\n';
+          
+          // 统计热门点击区域
+          const targetCount = {};
+          pageClickList.forEach(click => {
+            targetCount[click.target] = (targetCount[click.target] || 0) + 1;
+          });
+          
+          // 按点击次数排序
+          const sortedTargets = Object.entries(targetCount)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 5); // 只显示前5个热门区域
+          
+          sortedTargets.forEach(([target, count], index) => {
+            result += '  ' + (index + 1) + '. ' + target + ' (' + count + '次)\n';
+          });
+        }
+        
+        return result || '无点击记录';
+      },
+      
+      // 格式化停留时长
+      formatDurations() {
+        const durations = this.getStoredDurations();
+        if (Object.keys(durations).length === 0) return '无停留记录';
+        
+        let result = '';
+        for (const [page, pageDurations] of Object.entries(durations)) {
+          const pageName = this.getPageName(page);
+          const totalDuration = pageDurations.reduce((sum, d) => sum + d.duration, 0);
+          const avgDuration = Math.round(totalDuration / pageDurations.length);
+          const lastDuration = pageDurations[pageDurations.length - 1].duration;
+          
+          result += '\n【' + pageName + '】\n';
+          result += '  本次停留：' + this.formatTime(lastDuration) + '\n';
+          result += '  平均停留：' + this.formatTime(avgDuration) + '\n';
+          result += '  访问次数：' + pageDurations.length + '次\n';
+        }
+        
+        return result;
+      },
+      
+      // 格式化时间
+      formatTime(seconds) {
+        if (seconds < 60) return seconds + '秒';
+        if (seconds < 3600) {
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          return mins + '分' + (secs > 0 ? secs + '秒' : '');
+        }
+        const hours = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        return hours + '小时' + (mins > 0 ? mins + '分' : '');
+      },
+      
+      // 获取页面友好名称
+      getPageName(url) {
+        const pageMap = {
+          '/': '首页',
+          '/about': '关于我',
+          '/contact': '联系我',
+          '/money': '关于钱',
+          '/39': '39平住宅',
+          '/4': '一根梁的家',
+          '/70': '1970学区房',
+          '/10': '极致收纳',
+          '/11': '老年人执念',
+          '/12': '酷阿姨城堡',
+          '/naifufu': '奶fufu',
+          '/chaobei': '朝北户型',
+          '/menglong': '梦幻少女',
+          '/paodaofang': '跑道房',
+          '/5': '洋湖天街',
+          '/6': '香醍天街',
+          '/8': '大江东天街',
+          '/7': '东湖综合体',
+          '/9': '芙蓉天街',
+          '/dongan': '东安湖天街',
+          '/ace-cafe': 'ACE Cafe',
+          '/2': '社区咖啡',
+          '/hutong-jewelry': '胡同珠宝',
+          '/miomi': '美瞳门店',
+          '/miomi-1': '美瞳品牌',
+          '/3': '办公改造',
+          '/gallery': '摄影集'
+        };
+        return pageMap[url] || url;
+      },
+      
+      // 发送详细报告
+      sendReport() {
+        // 延迟发送，给访客时间产生数据
+        setTimeout(() => {
+          const visitorId = localStorage.getItem('shihe_visitorId') || '未知';
+          const clicks = JSON.parse(sessionStorage.getItem('shihe_clicks') || '[]');
+          const scrollData = JSON.parse(sessionStorage.getItem('shihe_maxScroll') || '{}');
+          
+          if (clicks.length === 0 && Object.keys(this.getStoredDurations()).length === 0) {
+            return; // 没有数据不发送
+          }
+          
+          const reportTime = new Date().toLocaleString('zh-CN');
+          
+          // 构建报告内容
+          let reportContent = '【访客ID】' + visitorId;
+          reportContent += '\n【报告时间】' + reportTime;
+          reportContent += '\n【总点击数】' + clicks.length + '次';
+          
+          if (scrollData.percent) {
+            reportContent += '\n【最大滚动深度】' + scrollData.percent + '%';
+          }
+          
+          reportContent += '\n\n═══════════ 页面停留时长 ═══════════';
+          reportContent += this.formatDurations();
+          
+          reportContent += '\n\n═══════════ 点击热力图 ═══════════';
+          reportContent += this.formatClickHeatmap();
+          
+          fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'title=' + encodeURIComponent('访客行为分析报告') + 
+                  '&desp=' + encodeURIComponent(reportContent)
+          }).then(() => {
+            console.log('行为分析报告已发送');
+          }).catch(e => {
+            console.log('报告发送失败', e);
+          });
+        }, 60000); // 60秒后发送，积累足够数据
+      }
+    };
+    
+    // 初始化追踪
+    HeatmapTracker.init();
+  </script>
 </body>
 </html>
