@@ -318,12 +318,76 @@
     // Server酱 SendKey
     const SERVER_CHAN_KEY = 'SCT390261TuBqDwEgEcbI8yWaYO17CSbP4';
     
+    // 访客追踪系统
+    const VisitorTracker = {
+      // 生成访客唯一ID
+      getVisitorId() {
+        let visitorId = localStorage.getItem('shihe_visitorId');
+        if (!visitorId) {
+          visitorId = 'V' + Date.now() + Math.random().toString(36).substr(2, 9);
+          localStorage.setItem('shihe_visitorId', visitorId);
+        }
+        return visitorId;
+      },
+      
+      // 获取访问历史
+      getVisitHistory() {
+        const history = localStorage.getItem('shihe_visitHistory');
+        return history ? JSON.parse(history) : [];
+      },
+      
+      // 记录本次访问
+      recordVisit() {
+        const history = this.getVisitHistory();
+        const now = new Date().toISOString();
+        history.push({
+          time: now,
+          page: window.location.pathname || '首页',
+          referrer: document.referrer || '直接访问'
+        });
+        // 只保留最近50次记录
+        if (history.length > 50) history.shift();
+        localStorage.setItem('shihe_visitHistory', JSON.stringify(history));
+        return history.length;
+      },
+      
+      // 获取上次访问信息
+      getLastVisit() {
+        const history = this.getVisitHistory();
+        if (history.length > 0) {
+          return history[history.length - 1];
+        }
+        return null;
+      },
+      
+      // 格式化时间差
+      formatTimeDiff(lastTime) {
+        const diff = Date.now() - new Date(lastTime).getTime();
+        const minutes = Math.floor(diff / 60000);
+        const hours = Math.floor(diff / 3600000);
+        const days = Math.floor(diff / 86400000);
+        
+        if (days > 0) return days + '天前';
+        if (hours > 0) return hours + '小时前';
+        if (minutes > 0) return minutes + '分钟前';
+        return '刚刚';
+      }
+    };
+    
+    // 记录进入时间（用于计算本次访问时长）
+    const enterTime = Date.now();
+    
     // 检查今天是否已经推送过
     const today = new Date().toDateString();
     const lastNotify = localStorage.getItem('shihe_lastNotify');
     
     // 如果是新访客（今天第一次访问）
     if (lastNotify !== today) {
+      // 获取访客信息
+      const visitorId = VisitorTracker.getVisitorId();
+      const visitCount = VisitorTracker.recordVisit();
+      const lastVisit = VisitorTracker.getLastVisit();
+      
       // 获取访问信息
       const page = window.location.pathname || '首页';
       const rawReferrer = document.referrer || '';
@@ -387,13 +451,25 @@
                          url.searchParams.get('q') ||   // Google/Bing
                          url.searchParams.get('query') || // 其他
                          url.searchParams.get('keyword');
-          return keyword ? '\n搜索词：' + decodeURIComponent(keyword) : '';
+          return keyword ? '\n【搜索关键词】' + decodeURIComponent(keyword) : '';
         } catch (e) {
           return '';
         }
       }
       
       const searchKeyword = getSearchKeyword(rawReferrer);
+      
+      // 构建访问历史信息
+      let visitHistoryInfo = '';
+      if (visitCount > 1) {
+        visitHistoryInfo = '\n【访问记录】这是第 ' + visitCount + ' 次访问';
+        if (lastVisit && lastVisit.time) {
+          const timeDiff = VisitorTracker.formatTimeDiff(lastVisit.time);
+          visitHistoryInfo += '，上次访问' + timeDiff;
+        }
+      } else {
+        visitHistoryInfo = '\n【访问记录】首次访问';
+      }
       
       // 发送推送
       fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
@@ -406,6 +482,8 @@
                 searchKeyword +
                 '\n【访问时间】' + time + 
                 '\n【设备信息】' + deviceInfo +
+                visitHistoryInfo +
+                '\n【访客ID】' + visitorId +
                 '\n【原始来源】' + (rawReferrer || '无')
               )
       }).then(() => {
@@ -417,6 +495,12 @@
       // 记录今天已通知
       localStorage.setItem('shihe_lastNotify', today);
     }
+    
+    // 页面关闭时记录访问时长（可选：如果需要精确时长统计）
+    window.addEventListener('beforeunload', function() {
+      const duration = Math.floor((Date.now() - enterTime) / 1000);
+      localStorage.setItem('shihe_lastVisitDuration', duration);
+    });
   </script>
 </body>
 </html>
