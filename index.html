@@ -502,5 +502,165 @@
       localStorage.setItem('shihe_lastVisitDuration', duration);
     });
   </script>
+
+  <!-- 页面路径追踪 -->
+  <script>
+    // 页面浏览追踪系统
+    const PageTracker = {
+      // 获取当前会话的浏览路径
+      getSessionPath() {
+        let path = sessionStorage.getItem('shihe_sessionPath');
+        return path ? JSON.parse(path) : [];
+      },
+      
+      // 记录页面浏览
+      recordPageView() {
+        const path = this.getSessionPath();
+        const currentPage = {
+          url: window.location.pathname + window.location.search,
+          title: document.title,
+          time: new Date().toLocaleTimeString('zh-CN'),
+          timestamp: Date.now()
+        };
+        
+        // 检查是否是新页面（避免重复记录同一页面）
+        const lastPage = path[path.length - 1];
+        if (!lastPage || lastPage.url !== currentPage.url) {
+          path.push(currentPage);
+          // 只保留最近20个页面
+          if (path.length > 20) path.shift();
+          sessionStorage.setItem('shihe_sessionPath', JSON.stringify(path));
+        }
+        
+        return path;
+      },
+      
+      // 获取页面停留时长
+      getPageDuration() {
+        const enterTime = parseInt(sessionStorage.getItem('shihe_pageEnterTime') || '0');
+        if (enterTime) {
+          return Math.floor((Date.now() - enterTime) / 1000);
+        }
+        return 0;
+      },
+      
+      // 格式化路径为字符串
+      formatPath(path) {
+        if (path.length === 0) return '无';
+        
+        return path.map((page, index) => {
+          const pageName = this.getPageName(page.url);
+          const duration = index < path.length - 1 ? '' : ' (当前页)';
+          return (index + 1) + '. ' + pageName + ' @' + page.time + duration;
+        }).join('\n');
+      },
+      
+      // 获取页面友好名称
+      getPageName(url) {
+        const pageMap = {
+          '/': '首页',
+          '/about': '关于我',
+          '/contact': '联系我',
+          '/money': '关于钱',
+          '/39': '39平住宅案例',
+          '/4': '一根梁的家案例',
+          '/70': '1970年学区房案例',
+          '/10': '极致收纳的家案例',
+          '/11': '老年人的执念案例',
+          '/12': '酷阿姨的空中城堡案例',
+          '/naifufu': '奶fufu的家案例',
+          '/chaobei': '全屋朝北案例',
+          '/menglong': '梦幻少女的家案例',
+          '/paodaofang': '跑道房案例',
+          '/5': '长沙洋湖天街案例',
+          '/6': '西安香醍天街案例',
+          '/8': '杭州大江东天街案例',
+          '/7': '武汉东湖综合体案例',
+          '/9': '长沙芙蓉天街案例',
+          '/dongan': '成都东安湖天街案例',
+          '/ace-cafe': 'ACE Cafe案例',
+          '/2': '社区咖啡店案例',
+          '/hutong-jewelry': '胡同珠宝店案例',
+          '/miomi': '美瞳门店案例',
+          '/miomi-1': '美瞳品牌门店案例',
+          '/3': '办公空间改造案例',
+          '/gallery': '摄影作品集'
+        };
+        
+        // 匹配路径
+        for (const [path, name] of Object.entries(pageMap)) {
+          if (url === path || url.startsWith(path + '?')) {
+            return name;
+          }
+        }
+        
+        // 默认返回路径
+        return url || '首页';
+      },
+      
+      // 发送页面浏览报告（每天一次）
+      sendPageReport() {
+        const path = this.getSessionPath();
+        if (path.length === 0) return;
+        
+        // 检查今天是否已经发送过报告
+        const today = new Date().toDateString();
+        const lastReport = localStorage.getItem('shihe_lastPageReport');
+        
+        if (lastReport === today) return;
+        
+        // 获取访客信息
+        const visitorId = localStorage.getItem('shihe_visitorId') || '未知';
+        const visitCount = localStorage.getItem('shihe_visitHistory') ? 
+                          JSON.parse(localStorage.getItem('shihe_visitHistory')).length : 1;
+        
+        // 构建报告
+        const pathStr = this.formatPath(path);
+        const reportTime = new Date().toLocaleString('zh-CN');
+        
+        // 延迟发送（确保访客已经浏览了一些页面）
+        setTimeout(() => {
+          const updatedPath = this.getSessionPath();
+          if (updatedPath.length >= 1) {
+            fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
+              method: 'POST',
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+              body: 'title=' + encodeURIComponent('访客浏览路径报告') + 
+                    '&desp=' + encodeURIComponent(
+                      '【访客ID】' + visitorId + 
+                      '\n【访问次数】第' + visitCount + '次访问' +
+                      '\n【浏览页面数】' + updatedPath.length + '个' +
+                      '\n【报告时间】' + reportTime +
+                      '\n\n【浏览路径】\n' + this.formatPath(updatedPath)
+                    )
+            }).then(() => {
+              console.log('浏览路径报告已发送');
+              localStorage.setItem('shihe_lastPageReport', today);
+            }).catch(e => {
+              console.log('报告发送失败', e);
+            });
+          }
+        }, 30000); // 30秒后发送，给访客时间浏览更多页面
+      }
+    };
+    
+    // 记录当前页面
+    PageTracker.recordPageView();
+    sessionStorage.setItem('shihe_pageEnterTime', Date.now().toString());
+    
+    // 发送浏览路径报告
+    PageTracker.sendPageReport();
+    
+    // 监听页面切换（单页应用）
+    let lastUrl = location.href;
+    new MutationObserver(() => {
+      const url = location.href;
+      if (url !== lastUrl) {
+        lastUrl = url;
+        PageTracker.recordPageView();
+        sessionStorage.setItem('shihe_pageEnterTime', Date.now().toString());
+      }
+    }).observe(document, { subtree: true, childList: true });
+  </script>
 </body>
 </html>
