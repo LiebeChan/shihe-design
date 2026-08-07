@@ -318,6 +318,23 @@
     // Server酱 SendKey
     const SERVER_CHAN_KEY = 'SCT390261TuBqDwEgEcbI8yWaYO17CSbP4';
     
+    // 检测是否为爬虫/机器人
+    function isBot() {
+      const ua = navigator.userAgent.toLowerCase();
+      const botPatterns = [
+        'bot', 'crawler', 'spider', 'scraper', 'curl', 'wget',
+        'baidu', 'googlebot', 'bingbot', 'yandex', 'sogou',
+        'facebookexternalhit', 'twitterbot', 'linkedinbot',
+        'python-requests', 'scrapy', 'headlesschrome'
+      ];
+      return botPatterns.some(pattern => ua.includes(pattern));
+    }
+    
+    // 如果是爬虫，不执行追踪
+    if (isBot()) {
+      console.log('爬虫访问，跳过追踪');
+    } else {
+    
     // 访客追踪系统
     const VisitorTracker = {
       // 生成访客唯一ID
@@ -958,6 +975,7 @@
     
     // 初始化追踪
     HeatmapTracker.init();
+  }
   </script>
 </body>
 </html>
