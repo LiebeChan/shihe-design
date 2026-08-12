@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设计取费 - 室合设计</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* 页面头部 */
+    .pricing-header { 
+      padding: 8rem 2rem 3rem; 
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      text-align: center; 
+      color: #fff;
+    }
+    .pricing-header h1 { 
+      font-size: 2.5rem; 
+      margin-bottom: 1rem; 
+      font-weight: 300; 
+    }
+    .pricing-header .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.1rem;
+    }
+    
+    /* 主内容区 */
+    .pricing-content { 
+      max-width: 1400px; 
+      margin: 0 auto; 
+      padding: 3rem 2rem; 
+    }
+    
+    /* 模式卡片 */
+    .mode-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    @media (max-width: 900px) {
+      .mode-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .mode-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      border-top: 4px solid #ddd;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .mode-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .mode-card.mode-1 { border-top-color: #4A90E2; }
+    .mode-card.mode-2 { border-top-color: #F5A623; }
+    .mode-card.mode-3 { border-top-color: #7ED321; }
+    
+    .mode-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+    .mode-card .price {
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+    .mode-card .price-unit {
+      font-size: 1rem;
+      color: #666;
+    }
+    .mode-card .desc {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    /* 图例 */
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    .legend-color {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+    }
+    .legend-color.owner { background: #FFB366; }
+    .legend-color.shihe { background: #FFE066; }
+    .legend-color.contractor { background: #66B3FF; }
+    
+    /* 责任表格 */
+    .responsibility-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      font-size: 0.9rem;
+    }
+    
+    .responsibility-table th,
+    .responsibility-table td {
+      padding: 1rem;
+      text-align: center;
+      border: 1px solid #e8e8e8;
+    }
+    
+    .responsibility-table th {
+      background: #1a1a1a;
+      color: #fff;
+      font-weight: 500;
+      position: sticky;
+      top: 0;
+    }
+    
+    .responsibility-table th:first-child {
+      text-align: left;
+      min-width: 120px;
+    }
+    
+    .responsibility-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+      background: #f8f8f8;
+    }
+    
+    /* 责任方颜色 */
+    .cell-owner { background: #FFB366 !important; color: #333; }
+    .cell-shihe { background: #FFE066 !important; color: #333; }
+    .cell-contractor { background: #66B3FF !important; color: #333; }
+    .cell-mixed { 
+      background: linear-gradient(135deg, #FFE066 50%, #66B3FF 50%) !important;
+      color: #333;
+    }
+    
+    /* 阶段标题行 */
+    .stage-row td {
+      background: #f0f0f0 !important;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    /* 表格滚动容器 */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+    
+    /* 说明文字 */
+    .note-section {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .note-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+    .note-section ul {
+      margin: 0;
+      padding-left: 1.5rem;
+      color: #555;
+      line-height: 1.8;
+    }
+    .note-section li {
+      margin-bottom: 0.5rem;
+    }
+    
+    /* CTA区域 */
+    .cta-section {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
+      border-radius: 16px;
+    }
+    .cta-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+    .cta-section p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: #1a1a1a;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+    }
+    .cta-btn:hover {
+      background: #333;
+      transform: translateY(-2px);
+    }
+    
+    /* 返回链接 */
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .back-link:hover {
+      color: #1a1a1a;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+      <a href="/pricing">设计取费</a>
+    </div>
+  </nav>
+
+  <header class="pricing-header">
+    <h1>设计取费</h1>
+    <p class="subtitle">三种服务模式，满足不同需求</p>
+  </header>
+
+  <main class="pricing-content">
+    <!-- 模式卡片 -->
+    <section class="mode-cards">
+      <div class="mode-card mode-1">
+        <h3>设计 + 施工</h3>
+        <div class="price">280<span class="price-unit">元/㎡</span></div>
+        <p class="desc">基础服务模式<br>业主自行负责主材采购</p>
+      </div>
+      <div class="mode-card mode-2">
+        <h3>设计 + 施工 + 主材</h3>
+        <div class="price">350<span class="price-unit">元/㎡</span></div>
+        <p class="desc">省心服务模式<br>室合协助主材选购</p>
+      </div>
+      <div class="mode-card mode-3">
+        <h3>全案托管</h3>
+        <div class="price">520<span class="price-unit">元/㎡</span></div>
+        <p class="desc">全程无忧模式<br>室合承担最多责任</p>
+      </div>
+    </section>
+
+    <!-- 图例 -->
+    <div class="legend">
+      <div class="legend-item">
+        <div class="legend-color owner"></div>
+        <span>业主负责</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color shihe"></div>
+        <span>室合负责</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color contractor"></div>
+        <span>施工方负责</span>
+      </div>
+    </div>
+
+    <!-- 责任划分表格 -->
+    <div class="table-wrapper">
+      <table class="responsibility-table">
+        <thead>
+          <tr>
+            <th>项目阶段</th>
+            <th>设计+施工<br>280元/㎡</th>
+            <th>设计+施工+主材<br>350元/㎡</th>
+            <th>全案托管<br>520元/㎡</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 施工准备 -->
+          <tr class="stage-row">
+            <td colspan="4">施工准备阶段</td>
+          </tr>
+          <tr>
+            <td>物业手续办理</td>
+            <td class="cell-owner">业主</td>
+            <td class="cell-owner">业主</td>
+            <td class="cell-shihe">室合代办</td>
+          </tr>
+          <tr>
+            <td>门窗保护</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          <tr>
+            <td>垃圾清运</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          
+          <!-- 拆除阶段 -->
+          <tr class="stage-row">
+            <td colspan="4">拆除阶段</td>
+          </tr>
+          <tr>
+            <td>拆除工程</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          <tr>
+            <td>垃圾外运</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          
+          <!-- 水电阶段 -->
+          <tr class="stage-row">
+            <td colspan="4">水电阶段</td>
+          </tr>
+          <tr>
+            <td>水电材料</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>水电施工</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          <tr>
+            <td>水电验收</td>
+            <td class="cell-owner">业主+室合</td>
+            <td class="cell-shihe">室合</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          
+          <!-- 空调地暖 -->
+          <tr class="stage-row">
+            <td colspan="4">空调/地暖/新风</td>
+          </tr>
+          <tr>
+            <td>设备采购</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>设备安装</td>
+            <td class="cell-owner">厂家安装</td>
+            <td class="cell-shihe">室合协调</td>
+            <td class="cell-shihe">室合负责</td>
+          </tr>
+          
+          <!-- 木工阶段 -->
+          <tr class="stage-row">
+            <td colspan="4">木工阶段</td>
+          </tr>
+          <tr>
+            <td>吊顶材料</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>吊顶施工</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          <tr>
+            <td>造型制作</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          
+          <!-- 瓦工阶段 -->
+          <tr class="stage-row">
+            <td colspan="4">瓦工阶段</td>
+          </tr>
+          <tr>
+            <td>瓷砖/石材</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>瓦工施工</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          <tr>
+            <td>美缝</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          
+          <!-- 油工阶段 -->
+          <tr class="stage-row">
+            <td colspan="4">油工阶段</td>
+          </tr>
+          <tr>
+            <td>墙面材料</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>油漆施工</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-contractor">施工方</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+          
+          <!-- 安装阶段 -->
+          <tr class="stage-row">
+            <td colspan="4">安装阶段</td>
+          </tr>
+          <tr>
+            <td>定制柜体</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>室内门</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>开关插座</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>灯具</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>卫浴五金</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>安装协调</td>
+            <td class="cell-owner">业主协调</td>
+            <td class="cell-shihe">室合协调</td>
+            <td class="cell-shihe">室合负责</td>
+          </tr>
+          
+          <!-- 软装阶段 -->
+          <tr class="stage-row">
+            <td colspan="4">软装阶段</td>
+          </tr>
+          <tr>
+            <td>家具选购</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>窗帘布艺</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>装饰品</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-owner">业主自购</td>
+            <td class="cell-shihe">室合配供</td>
+          </tr>
+          <tr>
+            <td>软装摆场</td>
+            <td class="cell-owner">业主</td>
+            <td class="cell-owner">业主</td>
+            <td class="cell-shihe">室合</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 说明 -->
+    <section class="note-section">
+      <h3>服务说明</h3>
+      <ul>
+        <li><strong>设计+施工（280元/㎡）</strong>：适合有时间和精力参与装修过程的业主，自行负责主材采购，室合提供设计和施工管理服务。</li>
+        <li><strong>设计+施工+主材（350元/㎡）</strong>：适合希望省心但想保留部分选择权的业主，室合协助主材选购和配送，减少您的奔波。</li>
+        <li><strong>全案托管（520元/㎡）</strong>：适合工作繁忙、追求品质的业主，从设计到软装全程由室合负责，您只需验收成果。</li>
+        <li>以上价格为设计服务费，不含施工费、主材费等实际工程费用。</li>
+        <li>具体服务内容以合同为准，可根据实际需求调整。</li>
+      </ul>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <h3>准备好开始了吗？</h3>
+      <p>无论选择哪种模式，我们都会用心为您服务</p>
+      <a href="/contact" class="cta-btn">预约咨询 →</a>
+    </section>
+
+    <div style="text-align: center;">
+      <a href="/" class="back-link">← 返回首页</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>
