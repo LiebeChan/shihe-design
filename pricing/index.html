@@ -102,7 +102,21 @@
       border-radius: 4px;
     }
     .legend-color.owner { background: #FFB366; }
-    .legend-color.owner-shihe { background: #FFCC80; }
+    .legend-color.owner-shihe {
+      background: linear-gradient(90deg, #FF8C42 50%, #4A90E2 50%);
+      position: relative;
+      overflow: hidden;
+    }
+    .legend-color.owner-shihe::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 3px;
+      height: 100%;
+      background: #fff;
+      transform: skewX(-15deg) translateX(-50%);
+    }
     .legend-color.shihe { background: #66B3FF; }
     .legend-color.contractor { background: #99CC99; }
     
@@ -162,7 +176,22 @@
       white-space: nowrap;
     }
     .badge-owner { background: #FFB366; color: #333; }
-    .badge-owner-shihe { background: linear-gradient(135deg, #FFB366 0%, #66B3FF 100%); color: #333; }
+    .badge-owner-shihe {
+      background: linear-gradient(90deg, #FF8C42 50%, #4A90E2 50%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+    .badge-owner-shihe::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 8px;
+      height: 100%;
+      background: #fff;
+      transform: skewX(-15deg) translateX(-50%);
+    }
     .badge-shihe { background: #66B3FF; color: #fff; }
     .badge-contractor { background: #99CC99; color: #333; }
     
