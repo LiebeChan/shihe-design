@@ -103,19 +103,19 @@
     }
     .legend-color.owner { background: #FFB366; }
     .legend-color.owner-shihe {
-      background: linear-gradient(90deg, #FF8C42 50%, #4A90E2 50%);
+      background: #FF8C42;
       position: relative;
       overflow: hidden;
     }
-    .legend-color.owner-shihe::before {
+    .legend-color.owner-shihe::after {
       content: '';
       position: absolute;
       top: 0;
-      left: 50%;
-      width: 3px;
+      right: 0;
+      width: 50%;
       height: 100%;
-      background: #fff;
-      transform: skewX(-15deg) translateX(-50%);
+      background: #4A90E2;
+      clip-path: polygon(4px 0, 100% 0, 100% 100%, 4px 100%, 0 50%);
     }
     .legend-color.shihe { background: #66B3FF; }
     .legend-color.contractor { background: #99CC99; }
@@ -177,20 +177,20 @@
     }
     .badge-owner { background: #FFB366; color: #333; }
     .badge-owner-shihe {
-      background: linear-gradient(90deg, #FF8C42 50%, #4A90E2 50%);
+      background: #FF8C42;
       color: #fff;
       position: relative;
       overflow: hidden;
     }
-    .badge-owner-shihe::before {
+    .badge-owner-shihe::after {
       content: '';
       position: absolute;
       top: 0;
-      left: 50%;
-      width: 8px;
+      right: 0;
+      width: 50%;
       height: 100%;
-      background: #fff;
-      transform: skewX(-15deg) translateX(-50%);
+      background: #4A90E2;
+      clip-path: polygon(12px 0, 100% 0, 100% 100%, 12px 100%, 0 50%);
     }
     .badge-shihe { background: #66B3FF; color: #fff; }
     .badge-contractor { background: #99CC99; color: #333; }
