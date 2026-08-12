@@ -303,6 +303,30 @@
       content: '💬';
       font-size: 1.2rem;
     }
+    
+    /* 问卷星 iframe 容器 */
+    .survey-iframe-container {
+      width: 100%;
+      min-height: 600px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .survey-iframe-container iframe {
+      width: 100% !important;
+      min-height: 600px !important;
+      border: none;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .survey-iframe-container {
+        min-height: 500px;
+      }
+      .survey-iframe-container iframe {
+        min-height: 500px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -343,9 +367,19 @@
 
     <!-- 表单区域 -->
     <section class="forms-section">
-      <!-- 免费咨询表单 -->
+      <!-- 在线信息收集表单（问卷星） -->
+      <div class="form-card" style="grid-column: 1 / -1;">
+        <h3>📋 设计需求信息收集</h3>
+        <p style="color: #666; margin-bottom: 1.5rem; font-size: 0.95rem;">填写以下信息，帮助我们更准确地了解您的需求，为您提供更精准的方案</p>
+        <div class="survey-iframe-container">
+          <script type="text/javascript" src="http://www.wenjuan.com/iframe/6a7c01d0e9cf9e881c608710/?params=hide_mobile_icon=true"></script>
+        </div>
+      </div>
+
+      <!-- 快速咨询表单 -->
       <div class="form-card">
-        <h3>免费咨询</h3>
+        <h3>💬 快速咨询</h3>
+        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">简单留言，我会尽快回复</p>
         <form id="consultForm">
           <div class="form-group">
             <input type="text" name="name" placeholder="您的姓名 *" required>
@@ -354,10 +388,7 @@
             <input type="tel" name="phone" placeholder="联系电话 *" required pattern="[0-9]{11}" title="请输入11位手机号">
           </div>
           <div class="form-group">
-            <input type="text" name="area" placeholder="房屋面积（㎡）">
-          </div>
-          <div class="form-group">
-            <textarea name="message" placeholder="简单描述您的需求" rows="3"></textarea>
+            <textarea name="message" placeholder="简单描述您的需求" rows="4"></textarea>
           </div>
           <button type="submit" class="submit-btn">提交咨询</button>
         </form>
@@ -368,7 +399,8 @@
 
       <!-- 预约设计表单 -->
       <div class="form-card">
-        <h3>预约设计</h3>
+        <h3>📅 预约设计</h3>
+        <p style="color: #666; margin-bottom: 1rem; font-size: 0.9rem;">详细填写，开启专属设计服务</p>
         <form id="bookingForm">
           <div class="form-group">
             <input type="text" name="name" placeholder="您的姓名 *" required>
