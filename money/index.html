@@ -165,7 +165,7 @@
       margin-top: 2rem;
     }
     
-    /* 付款节点 */
+    /* 付款节点 - 横向卡片布局 */
     .payment-section {
       margin-bottom: 5rem;
     }
@@ -176,48 +176,66 @@
       font-weight: 300;
     }
     .payment-schedule {
-      max-width: 600px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      max-width: 1200px;
       margin: 0 auto;
+    }
+    @media (max-width: 1024px) {
+      .payment-schedule {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .payment-schedule {
+        grid-template-columns: 1fr;
+      }
     }
     .payment-item {
       display: flex;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
       background: #fff;
-      border-radius: 12px;
-      padding: 1.5rem 2rem;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .payment-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+    .payment-step {
+      width: 40px;
+      height: 40px;
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
       margin-bottom: 1rem;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
     }
     .payment-time {
-      flex: 1;
       font-weight: 500;
       color: #1a1a1a;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
     }
     .payment-amount {
-      flex: 1;
-      text-align: center;
-      font-size: 1.25rem;
+      font-size: 2rem;
       color: #1a1a1a;
-      font-weight: 500;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
     .payment-desc {
-      flex: 1;
-      text-align: right;
-      color: #666;
-      font-size: 0.9rem;
-    }
-    @media (max-width: 600px) {
-      .payment-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 0.5rem;
-      }
-      .payment-time,
-      .payment-amount,
-      .payment-desc {
-        flex: none;
-        text-align: center;
-      }
+      color: #888;
+      font-size: 0.85rem;
+      line-height: 1.5;
     }
     
     /* 服务亮点 */
@@ -414,21 +432,25 @@
       <h2>付款方式</h2>
       <div class="payment-schedule">
         <div class="payment-item">
+          <div class="payment-step">1</div>
           <span class="payment-time">现场量房</span>
           <span class="payment-amount">1500元</span>
           <span class="payment-desc">量房定金</span>
         </div>
         <div class="payment-item">
+          <div class="payment-step">2</div>
           <span class="payment-time">平面布置设计确认</span>
           <span class="payment-amount">40%-1500</span>
           <span class="payment-desc">扣除量房定金后支付</span>
         </div>
         <div class="payment-item">
+          <div class="payment-step">3</div>
           <span class="payment-time">方案设计确认</span>
           <span class="payment-amount">30%</span>
           <span class="payment-desc">效果图+材料方案</span>
         </div>
         <div class="payment-item">
+          <div class="payment-step">4</div>
           <span class="payment-time">施工图确认</span>
           <span class="payment-amount">30%</span>
           <span class="payment-desc">全套施工图交付</span>
