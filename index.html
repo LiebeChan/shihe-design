@@ -30,7 +30,7 @@
       <a href="/about" class="cta secondary">关于我</a>
       <a href="/money" class="cta secondary">关于钱</a>
       <!-- <a href="/deliverables" class="cta secondary">设计交付</a> -->
-      <a href="/contact" class="cta" onclick="startDesign(); return false;">开始设计 →</a>
+      <a href="/contact" class="cta">开始设计 →</a>
     </div>
   </section>
 
@@ -277,8 +277,18 @@
 
     // 开始设计按钮点击处理
     function startDesign() {
-      // 跳转到联系页面，那里有完整的表单
-      window.location.href = '/contact';
+      if (isWeChatBrowser()) {
+        // 微信内：尝试唤起添加好友（需要微信认证，这里显示提示）
+        showQRModal();
+        // 备选：尝试跳转微信名片页（需配置个人微信链接）
+        // window.location.href = 'weixin://contacts/profile/liebechen_n';
+      } else if (isMobile()) {
+        // 手机其他浏览器：显示二维码
+        showQRModal();
+      } else {
+        // PC端：显示二维码
+        showQRModal();
+      }
     }
 
     // 显示二维码弹窗
