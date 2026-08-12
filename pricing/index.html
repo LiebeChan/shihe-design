@@ -102,103 +102,69 @@
       border-radius: 4px;
     }
     .legend-color.owner { background: #FFB366; }
-    .legend-color.shihe { background: #FFE066; }
-    .legend-color.contractor { background: #66B3FF; }
+    .legend-color.owner-shihe { background: #FFCC80; }
+    .legend-color.shihe { background: #66B3FF; }
+    .legend-color.contractor { background: #99CC99; }
     
-    /* 责任卡片区域 */
+    /* 责任表格区域 */
     .responsibility-section {
       margin-bottom: 3rem;
-    }
-    
-    .responsibility-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-    @media (max-width: 900px) {
-      .responsibility-cards {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    .responsibility-card {
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .responsibility-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-    .responsibility-card.mode-1 { border-top: 4px solid #4A90E2; }
-    .responsibility-card.mode-2 { border-top: 4px solid #F5A623; }
-    .responsibility-card.mode-3 { border-top: 4px solid #7ED321; }
-    
-    .responsibility-card-header {
-      padding: 1.5rem;
-      text-align: center;
-      background: #f8f8f8;
-      border-bottom: 1px solid #eee;
-    }
-    .responsibility-card-header h4 {
-      font-size: 1.1rem;
-      color: #1a1a1a;
-      margin-bottom: 0.25rem;
-    }
-    .responsibility-card-header .price-small {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #1a1a1a;
-    }
-    .responsibility-card-header .price-small span {
-      font-size: 0.85rem;
-      color: #666;
-      font-weight: 400;
     }
     
-    .responsibility-list {
-      padding: 1rem 0;
+    .responsibility-table {
+      width: 100%;
+      border-collapse: collapse;
     }
     
-    .responsibility-item {
-      display: flex;
-      align-items: center;
-      padding: 0.75rem 1.25rem;
+    .responsibility-table th,
+    .responsibility-table td {
+      padding: 0.85rem 1rem;
+      text-align: left;
       border-bottom: 1px solid #f0f0f0;
     }
-    .responsibility-item:last-child {
-      border-bottom: none;
+    
+    .responsibility-table th {
+      background: #f8f8f8;
+      font-weight: 600;
+      color: #333;
+      font-size: 0.9rem;
     }
     
-    .responsibility-item .label {
-      flex: 1;
+    .responsibility-table td {
       font-size: 0.9rem;
       color: #444;
     }
     
-    .responsibility-item .badge {
-      padding: 0.35rem 0.75rem;
-      border-radius: 20px;
+    .responsibility-table .stage-header {
+      background: #f0f0f0;
+      font-weight: 600;
+      color: #555;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .responsibility-table .stage-header td {
+      padding: 0.6rem 1rem;
+      font-size: 0.85rem;
+    }
+    
+    /* 责任标签 */
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
       font-size: 0.8rem;
       font-weight: 500;
       white-space: nowrap;
     }
     .badge-owner { background: #FFB366; color: #333; }
-    .badge-shihe { background: #FFE066; color: #333; }
-    .badge-contractor { background: #66B3FF; color: #333; }
-    
-    /* 阶段标题 */
-    .stage-title {
-      background: #f5f5f5;
-      padding: 0.6rem 1.25rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: #666;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
+    .badge-owner-shihe { background: #FFCC80; color: #333; }
+    .badge-shihe { background: #66B3FF; color: #fff; }
+    .badge-contractor { background: #99CC99; color: #333; }
     
     /* 说明文字 */
     .note-section {
@@ -264,6 +230,15 @@
     .back-link:hover {
       color: #1a1a1a;
     }
+    
+    /* 表格说明 */
+    .table-note {
+      padding: 1rem;
+      background: #f8f8f8;
+      font-size: 0.85rem;
+      color: #666;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -306,437 +281,334 @@
     <div class="legend">
       <div class="legend-item">
         <div class="legend-color owner"></div>
-        <span>业主负责</span>
+        <span>业主主要负责</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color owner-shihe"></div>
+        <span>业主+室合共同负责</span>
       </div>
       <div class="legend-item">
         <div class="legend-color shihe"></div>
-        <span>室合负责</span>
+        <span>室合主要负责</span>
       </div>
       <div class="legend-item">
         <div class="legend-color contractor"></div>
-        <span>施工方负责</span>
+        <span>施工方执行</span>
       </div>
     </div>
 
-    <!-- 责任划分卡片 -->
+    <!-- 责任划分表格 -->
     <section class="responsibility-section">
-      <div class="responsibility-cards">
-        <!-- 模式1：设计+施工 -->
-        <div class="responsibility-card mode-1">
-          <div class="responsibility-card-header">
-            <h4>设计 + 施工</h4>
-            <div class="price-small">280<span>元/㎡</span></div>
-          </div>
-          <div class="responsibility-list">
-            <div class="stage-title">施工准备阶段</div>
-            <div class="responsibility-item">
-              <span class="label">物业手续办理</span>
-              <span class="badge badge-owner">业主</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">门窗保护</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">垃圾清运</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">拆除阶段</div>
-            <div class="responsibility-item">
-              <span class="label">拆除工程</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">垃圾外运</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">水电阶段</div>
-            <div class="responsibility-item">
-              <span class="label">水电材料</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">水电施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">水电验收</span>
-              <span class="badge badge-owner">业主+室合</span>
-            </div>
-            
-            <div class="stage-title">空调/地暖/新风</div>
-            <div class="responsibility-item">
-              <span class="label">设备采购</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">设备安装</span>
-              <span class="badge badge-owner">厂家安装</span>
-            </div>
-            
-            <div class="stage-title">木工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">吊顶材料</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">吊顶施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">造型制作</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">瓦工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">瓷砖/石材</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">瓦工施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">美缝</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            
-            <div class="stage-title">油工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">墙面材料</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">油漆施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">安装阶段</div>
-            <div class="responsibility-item">
-              <span class="label">定制柜体</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">室内门</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">开关插座</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">灯具</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">卫浴五金</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">安装协调</span>
-              <span class="badge badge-owner">业主协调</span>
-            </div>
-            
-            <div class="stage-title">软装阶段</div>
-            <div class="responsibility-item">
-              <span class="label">家具选购</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">窗帘布艺</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">装饰品</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">软装摆场</span>
-              <span class="badge badge-owner">业主</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 模式2：设计+施工+主材 -->
-        <div class="responsibility-card mode-2">
-          <div class="responsibility-card-header">
-            <h4>设计 + 施工 + 主材</h4>
-            <div class="price-small">350<span>元/㎡</span></div>
-          </div>
-          <div class="responsibility-list">
-            <div class="stage-title">施工准备阶段</div>
-            <div class="responsibility-item">
-              <span class="label">物业手续办理</span>
-              <span class="badge badge-owner">业主</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">门窗保护</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">垃圾清运</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">拆除阶段</div>
-            <div class="responsibility-item">
-              <span class="label">拆除工程</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">垃圾外运</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">水电阶段</div>
-            <div class="responsibility-item">
-              <span class="label">水电材料</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">水电施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">水电验收</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            
-            <div class="stage-title">空调/地暖/新风</div>
-            <div class="responsibility-item">
-              <span class="label">设备采购</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">设备安装</span>
-              <span class="badge badge-shihe">室合协调</span>
-            </div>
-            
-            <div class="stage-title">木工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">吊顶材料</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">吊顶施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">造型制作</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">瓦工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">瓷砖/石材</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">瓦工施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">美缝</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            
-            <div class="stage-title">油工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">墙面材料</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">油漆施工</span>
-              <span class="badge badge-contractor">施工方</span>
-            </div>
-            
-            <div class="stage-title">安装阶段</div>
-            <div class="responsibility-item">
-              <span class="label">定制柜体</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">室内门</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">开关插座</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">灯具</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">卫浴五金</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">安装协调</span>
-              <span class="badge badge-shihe">室合协调</span>
-            </div>
-            
-            <div class="stage-title">软装阶段</div>
-            <div class="responsibility-item">
-              <span class="label">家具选购</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">窗帘布艺</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">装饰品</span>
-              <span class="badge badge-owner">业主自购</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">软装摆场</span>
-              <span class="badge badge-owner">业主</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- 模式3：全案托管 -->
-        <div class="responsibility-card mode-3">
-          <div class="responsibility-card-header">
-            <h4>全案托管</h4>
-            <div class="price-small">520<span>元/㎡</span></div>
-          </div>
-          <div class="responsibility-list">
-            <div class="stage-title">施工准备阶段</div>
-            <div class="responsibility-item">
-              <span class="label">物业手续办理</span>
-              <span class="badge badge-shihe">室合代办</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">门窗保护</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">垃圾清运</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            
-            <div class="stage-title">拆除阶段</div>
-            <div class="responsibility-item">
-              <span class="label">拆除工程</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">垃圾外运</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            
-            <div class="stage-title">水电阶段</div>
-            <div class="responsibility-item">
-              <span class="label">水电材料</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">水电施工</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">水电验收</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            
-            <div class="stage-title">空调/地暖/新风</div>
-            <div class="responsibility-item">
-              <span class="label">设备采购</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">设备安装</span>
-              <span class="badge badge-shihe">室合负责</span>
-            </div>
-            
-            <div class="stage-title">木工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">吊顶材料</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">吊顶施工</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">造型制作</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            
-            <div class="stage-title">瓦工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">瓷砖/石材</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">瓦工施工</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">美缝</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            
-            <div class="stage-title">油工阶段</div>
-            <div class="responsibility-item">
-              <span class="label">墙面材料</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">油漆施工</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-            
-            <div class="stage-title">安装阶段</div>
-            <div class="responsibility-item">
-              <span class="label">定制柜体</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">室内门</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">开关插座</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">灯具</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">卫浴五金</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">安装协调</span>
-              <span class="badge badge-shihe">室合负责</span>
-            </div>
-            
-            <div class="stage-title">软装阶段</div>
-            <div class="responsibility-item">
-              <span class="label">家具选购</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">窗帘布艺</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">装饰品</span>
-              <span class="badge badge-shihe">室合配供</span>
-            </div>
-            <div class="responsibility-item">
-              <span class="label">软装摆场</span>
-              <span class="badge badge-shihe">室合</span>
-            </div>
-          </div>
-        </div>
+      <table class="responsibility-table">
+        <thead>
+          <tr>
+            <th style="width: 35%">阶段/项目</th>
+            <th style="width: 21.6%">280元/㎡</th>
+            <th style="width: 21.6%">350元/㎡</th>
+            <th style="width: 21.6%">520元/㎡</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 一、施工准备 -->
+          <tr class="stage-header">
+            <td colspan="4">一、施工准备</td>
+          </tr>
+          <tr>
+            <td>窗户配供</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>户门配供</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>空调配供</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>新风配供</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>地面选配(瓷砖/木地板)</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>墙面选配(涂料/墙板等)</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>灯具选配</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>洁具配供</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>全屋定制</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>供暖配供</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>排水系统配供</td>
+            <td><span class="badge badge-shihe">室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>给水系统配供</td>
+            <td><span class="badge badge-shihe">室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>家电选配</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+          </tr>
+          <tr>
+            <td>施工手续</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+          </tr>
+          <tr>
+            <td>现场设备存留</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 二、拆除阶段 -->
+          <tr class="stage-header">
+            <td colspan="4">二、拆除阶段</td>
+          </tr>
+          <tr>
+            <td>开工交底</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>现场拆除</td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+          </tr>
+          <tr>
+            <td>拆除阶段验收+水电交底</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>窗户、户门量尺</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 三、水电阶段 -->
+          <tr class="stage-header">
+            <td colspan="4">三、水电阶段</td>
+          </tr>
+          <tr>
+            <td>中央空调设备安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>新风设备安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>智能场景回路施工</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>强弱电管线施工</td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+          </tr>
+          <tr>
+            <td>地暖管路铺设</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>洁具预埋件定位</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>水电成果验收+木工交底</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 四、木工阶段 -->
+          <tr class="stage-header">
+            <td colspan="4">四、木工阶段</td>
+          </tr>
+          <tr>
+            <td>木工进场施工天花墙面等</td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+          </tr>
+          <tr>
+            <td>灯具开孔</td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+          </tr>
+          <tr>
+            <td>预埋设备开孔</td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+          </tr>
+          <tr>
+            <td>木工成果验收+瓦工交底</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 五、瓦工阶段 -->
+          <tr class="stage-header">
+            <td colspan="4">五、瓦工阶段</td>
+          </tr>
+          <tr>
+            <td>瓷砖岩板石材施工</td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+          </tr>
+          <tr>
+            <td>瓦工成果验收+油工交底</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 六、油工阶段 -->
+          <tr class="stage-header">
+            <td colspan="4">六、油工阶段</td>
+          </tr>
+          <tr>
+            <td>天花墙面基础施工</td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+            <td><span class="badge badge-contractor">施工</span></td>
+          </tr>
+          <tr>
+            <td>油工成果验收+全屋定制、屋门、软装等复尺</td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 七、安装阶段 -->
+          <tr class="stage-header">
+            <td colspan="4">七、安装阶段</td>
+          </tr>
+          <tr>
+            <td>灯具安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>智能安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>洁具安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>地板安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>木作安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          <tr>
+            <td>开关插座安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 八、油工修缮 -->
+          <tr class="stage-header">
+            <td colspan="4">八、油工修缮</td>
+          </tr>
+          <tr>
+            <td>安装后的磕碰收边收口等的修缮</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-shihe">室合</span></td>
+          </tr>
+          
+          <!-- 九、软装进场 -->
+          <tr class="stage-header">
+            <td colspan="4">九、软装进场</td>
+          </tr>
+          <tr>
+            <td>运输摆场安装</td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner">业主</span></td>
+            <td><span class="badge badge-owner-shihe">业主+室合</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="table-note">
+        * 业主：由业主自行负责 | 业主+室合：双方共同配合 | 室合：由室合设计主导负责 | 施工：由施工方执行
       </div>
     </section>
 
