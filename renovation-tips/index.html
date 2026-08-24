@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>装修过程中的注意事项 - 室合设计</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .tips-header {
+      padding: 8rem 2rem 3rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      text-align: center;
+      color: #fff;
+    }
+    .tips-header h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .tips-header .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+    }
+    
+    .tips-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .phase-list {
+      display: grid;
+      gap: 1rem;
+    }
+    
+    .phase-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem 2rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid #ddd;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .phase-card:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .phase-card.active {
+      border-left-color: #4A90E2;
+    }
+    
+    .phase-card.pending {
+      border-left-color: #ccc;
+      opacity: 0.7;
+    }
+    
+    .phase-info h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+      color: #1a1a1a;
+    }
+    
+    .phase-info p {
+      font-size: 0.9rem;
+      color: #888;
+    }
+    
+    .phase-arrow {
+      font-size: 1.5rem;
+      color: #ccc;
+    }
+    
+    .phase-card.active .phase-arrow {
+      color: #4A90E2;
+    }
+    
+    .intro-section {
+      background: #f8f8f8;
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .intro-section h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      color: #1a1a1a;
+    }
+    
+    .intro-section p {
+      color: #555;
+      line-height: 1.8;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .back-link:hover {
+      color: #1a1a1a;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+      <a href="/pricing">设计取费</a>
+    </div>
+  </nav>
+
+  <header class="tips-header">
+    <h1>装修过程中的注意事项</h1>
+    <p class="subtitle">专业指导，避开装修陷阱</p>
+  </header>
+
+  <main class="tips-content">
+    <section class="intro-section">
+      <h2>装修避坑指南</h2>
+      <p>装修是一个复杂的系统工程，每个阶段都有需要注意的细节。我们根据多年实战经验，整理了各阶段的关键注意事项，帮助您把控施工质量，避免后期返工和隐患。</p>
+    </section>
+
+    <section class="phase-list">
+      <a href="/renovation-tips/demolition" class="phase-card active">
+        <div class="phase-info">
+          <h3>一、拆除阶段</h3>
+          <p>下水保护、基层拆除、渗水排查、烟道查验等 12 项关键要点</p>
+        </div>
+        <span class="phase-arrow">→</span>
+      </a>
+      
+      <div class="phase-card pending">
+        <div class="phase-info">
+          <h3>二、水电阶段</h3>
+          <p>敬请期待...</p>
+        </div>
+      </div>
+      
+      <div class="phase-card pending">
+        <div class="phase-info">
+          <h3>三、木工阶段</h3>
+          <p>敬请期待...</p>
+        </div>
+      </div>
+      
+      <div class="phase-card pending">
+        <div class="phase-info">
+          <h3>四、瓦工阶段</h3>
+          <p>敬请期待...</p>
+        </div>
+      </div>
+      
+      <div class="phase-card pending">
+        <div class="phase-info">
+          <h3>五、油工阶段</h3>
+          <p>敬请期待...</p>
+        </div>
+      </div>
+      
+      <div class="phase-card pending">
+        <div class="phase-info">
+          <h3>六、安装阶段</h3>
+          <p>敬请期待...</p>
+        </div>
+      </div>
+    </section>
+
+    <div style="text-align: center;">
+      <a href="/" class="back-link">← 返回首页</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>

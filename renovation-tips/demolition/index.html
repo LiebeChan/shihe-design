@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>拆除阶段注意事项 - 室合设计</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .tips-header {
+      padding: 8rem 2rem 3rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      text-align: center;
+      color: #fff;
+    }
+    .tips-header h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .tips-header .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+    }
+    
+    .tips-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .tip-section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid #4A90E2;
+    }
+    
+    .tip-section.warning {
+      border-left-color: #F5A623;
+    }
+    
+    .tip-section.danger {
+      border-left-color: #E74C3C;
+    }
+    
+    .tip-section.success {
+      border-left-color: #7ED321;
+    }
+    
+    .tip-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tip-number {
+      width: 32px;
+      height: 32px;
+      background: #4A90E2;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .tip-section.warning .tip-number { background: #F5A623; }
+    .tip-section.danger .tip-number { background: #E74C3C; }
+    .tip-section.success .tip-number { background: #7ED321; }
+    
+    .tip-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .tip-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .tip-list li {
+      padding: 0.6rem 0 0.6rem 1.5rem;
+      position: relative;
+      color: #555;
+      line-height: 1.7;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .tip-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .tip-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4A90E2;
+      font-weight: bold;
+    }
+    
+    .tip-section.warning .tip-list li::before { color: #F5A623; }
+    .tip-section.danger .tip-list li::before { color: #E74C3C; }
+    .tip-section.success .tip-list li::before { color: #7ED321; }
+    
+    .highlight-box {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-left: 3px solid #4A90E2;
+    }
+    
+    .highlight-box p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .highlight-box strong {
+      color: #333;
+    }
+    
+    .nav-links-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .nav-link {
+      color: #666;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: #1a1a1a;
+    }
+    
+    .nav-link.next {
+      color: #4A90E2;
+    }
+    
+    .nav-link.next:hover {
+      color: #357ABD;
+    }
+    
+    .intro-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    
+    .intro-banner h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .intro-banner p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+    
+    .check-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      background: #4A90E2;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 12px;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+      <a href="/pricing">设计取费</a>
+    </div>
+  </nav>
+
+  <header class="tips-header">
+    <h1>拆除阶段注意事项</h1>
+    <p class="subtitle">装修第一步，拆除是关键</p>
+  </header>
+
+  <main class="tips-content">
+    <div class="intro-banner">
+      <h2>⚠️ 拆除阶段的重要性</h2>
+      <p>拆除是装修的基础工程，处理不当会导致后期漏水、墙面开裂、空鼓等一系列问题。本阶段务必做到"拆干净、查彻底、保护好"，为后续施工打下坚实基础。</p>
+    </div>
+
+    <!-- 一、下水管道&地漏保护 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">1</span>
+        <h3 class="tip-title">下水管道 & 地漏保护</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>所有地漏、排污管口全部封堵严实</strong>，使用专用堵头或湿布+胶带密封，杜绝碎石、泥沙、杂物掉入造成堵塞</li>
+        <li>拆除前拍照记录原始管道走向和位置，便于后期水电改造参考</li>
+        <li><strong>检查主排污管无破损、无锈蚀、无渗水</strong>，发现问题立即标记并通知物业</li>
+        <li>现场倒水测试排水顺畅度，观察是否有积水、返味现象，及时排查原因</li>
+        <li>保护好的管口每日检查，防止封堵物脱落或被工人误拆</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💡 专业提示：</strong>主排污管一旦堵塞，疏通费用高达数千元且责任难界定。拆除阶段务必重点保护，建议业主亲自检查确认。</p>
+      </div>
+    </section>
+
+    <!-- 二、天花基层拆除 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">2</span>
+        <h3 class="tip-title">天花基层拆除</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>顶面空鼓、起皮、开裂的抹灰层必须全部铲除干净</strong>，铲至坚实基层</li>
+        <li>旧灯具、废弃旧电线全部清走，线头做好绝缘处理，不留安全隐患</li>
+        <li>拆除后顶面应无浮渣、无松动层、无油污，确保后续吊顶、批灰粘结牢固</li>
+        <li>检查楼板是否有裂缝或渗漏痕迹，提前发现建筑结构问题</li>
+        <li>原吊顶龙骨拆除时注意不要破坏楼板预埋的管线</li>
+      </ul>
+    </section>
+
+    <!-- 三、墙体渗水排查 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">3</span>
+        <h3 class="tip-title">墙体渗水排查</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>拆到红砖或混凝土层后，全面检查墙面水印、返潮位置</strong>，尤其关注背水墙面</li>
+        <li>提前找出渗水源头：外墙裂缝、厨卫相邻墙面、水管走向位置重点排查</li>
+        <li>用湿度检测仪或肉眼观察，标记所有潮湿区域</li>
+        <li><strong>提前做防水补强处理</strong>，涂刷防水涂料或注浆堵漏，杜绝后期发霉返潮</li>
+        <li>外墙渗水需联系物业或开发商处理，室内防水由装修方负责</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>⚠️ 注意：</strong>渗水问题如果在拆除阶段不处理，后期贴砖、刷漆后返工成本极高。建议拆除后等待几天观察墙面干燥情况。</p>
+      </div>
+    </section>
+
+    <!-- 四、厨卫烟道查验 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">4</span>
+        <h3 class="tip-title">厨卫烟道查验</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>检查烟道完整无开裂、无破洞、无乱打孔</strong>，确保排烟通畅</li>
+        <li><strong>严禁敲打、切割烟道主体</strong>，防止破坏结构导致后期油烟倒灌</li>
+        <li>烟道周边松散的砂浆、油污、旧瓷砖胶全部清理干净</li>
+        <li>检查烟道止逆阀是否完好，必要时更换新的止逆阀</li>
+        <li>烟道与墙体交接处检查密封性，防止串烟串味</li>
+      </ul>
+    </section>
+
+    <!-- 五、卫生间旧防水层铲除 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">5</span>
+        <h3 class="tip-title">卫生间旧防水层铲除</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>旧防水、旧瓷砖胶必须全部铲到红砖或坚实基层！</strong>不可心存侥幸</li>
+        <li>残留旧防水会导致新防水层起鼓、分层、粘结不牢，最终漏水</li>
+        <li><strong>管根、窗边、阴阳角、地漏周边重点清理</strong>，不留任何死角</li>
+        <li>铲除后基层应坚实、平整、无浮灰，必要时做找平处理</li>
+        <li>清理后的基层用清水冲洗，待完全干燥后再做新防水</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>🚨 重要提醒：</strong>很多工人为了省事会直接在旧瓷砖上做新防水，这是严重错误！旧防水层必须彻底清除，这是保证新防水效果的前提。</p>
+      </div>
+    </section>
+
+    <!-- 六、墙面外露钢筋处理 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">6</span>
+        <h3 class="tip-title">墙面外露钢筋处理</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>墙面凸出钢筋、铁钉全部切割平整</strong>，与墙面齐平或略低</li>
+        <li>凸起的金属如不处理，后期一定会导致抹灰层空鼓、返锈、墙面发黄</li>
+        <li>切割后做好除锈处理，涂刷防锈漆，杜绝后期墙体锈斑渗透</li>
+        <li>钢筋切割点用水泥砂浆填补抹平</li>
+        <li>检查是否有遗漏的金属件，尤其是旧挂件、膨胀螺栓等</li>
+      </ul>
+    </section>
+
+    <!-- 七、墙面空鼓层清除 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">7</span>
+        <h3 class="tip-title">墙面空鼓层清除</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>全屋敲墙排查，所有空鼓抹灰层全部铲除</strong>，用空鼓锤系统检查</li>
+        <li>空鼓层不铲干净，后期墙面必定开裂、掉皮、起壳，维修成本极高</li>
+        <li>检查范围包括所有墙面、柱子、梁侧面</li>
+        <li>铲除后基层应结实牢固，无松动浮灰，必要时做界面剂处理</li>
+        <li>老房墙面建议全部铲至红砖层，重新抹灰更保险</li>
+      </ul>
+    </section>
+
+    <!-- 八、立柱凸出金属清理 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">8</span>
+        <h3 class="tip-title">立柱凸出金属清理</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>横梁、立柱外露的钢筋、金属件全部切割平整</strong></li>
+        <li>保证墙体平整垂直，误差控制在规范范围内</li>
+        <li>方便后续找平、贴砖、做柜子等工序顺利进行</li>
+        <li>金属切割点做好防锈处理</li>
+        <li>检查构造柱、圈梁等结构构件是否完好</li>
+      </ul>
+    </section>
+
+    <!-- 九、燃气表拆除规范 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">9</span>
+        <h3 class="tip-title">燃气表拆除规范</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>燃气表禁止工人私自拆卸！</strong>必须由燃气公司专业人员上门操作</li>
+        <li>提前拨打燃气公司热线预约拆表，一般需提前3-5个工作日</li>
+        <li>拆表后妥善保管燃气表和配件，避免丢失或损坏</li>
+        <li>完工后统一预约燃气公司重装通气，不可自行安装</li>
+        <li><strong>施工全程关闭燃气总阀</strong>，做好安全防护，严禁现场明火</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>⚠️ 安全警告：</strong>私自拆装燃气表属于违法行为，且存在极大安全隐患。务必通过正规渠道办理，保留好相关票据。</p>
+      </div>
+    </section>
+
+    <!-- 十、门洞墙体切割标准 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">10</span>
+        <h3 class="tip-title">门洞墙体切割标准</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>改门洞、拆隔墙必须弹线切割，拒绝暴力砸墙</strong></li>
+        <li>使用专业切割机，保证洞口边角平整顺直</li>
+        <li>暴力砸墙会导致墙体内部开裂，留下隐形裂缝隐患</li>
+        <li><strong>承重梁、柱子、剪力墙绝对不能破坏</strong>，涉及结构安全</li>
+        <li>新开门洞上方需加设过梁，确保结构稳定</li>
+        <li>拆除后的门洞边缘修整平整，便于后续门框安装</li>
+      </ul>
+    </section>
+
+    <!-- 十一、旧线盒清理 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">11</span>
+        <h3 class="tip-title">旧线盒清理</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>废弃旧线盒、残留老旧电线全部清理干净</strong></li>
+        <li>闲置的线盒孔洞用水泥砂浆填补密实</li>
+        <li>保留的线盒检查是否牢固，松动需重新固定</li>
+        <li>清理不影响后期水电布线和开关插座安装</li>
+        <li>标记好保留的线路走向，便于后续施工参考</li>
+      </ul>
+    </section>
+
+    <!-- 十二、地面基层平整处理 -->
+    <section class="tip-section success">
+      <div class="tip-header">
+        <span class="tip-number">12</span>
+        <h3 class="tip-title">地面基层平整处理</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>地面凸起的水泥块、硬块、旧瓷砖胶全部铲平</strong></li>
+        <li>减少地面高低差，为后续找平层节省材料和人工</li>
+        <li>检查地面是否有裂缝或起砂，必要时做加固处理</li>
+        <li>地暖房拆除时注意保护地暖管道，避免破坏</li>
+        <li>清理后的地面平整度误差控制在10mm以内</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💰 省钱提示：</strong>地面处理越平整，后期找平和铺砖的材料用量越少。拆除阶段多花点功夫，能节省不少装修费用。</p>
+      </div>
+    </section>
+
+    <!-- 拆除验收清单 -->
+    <section class="tip-section" style="background: #f8f9fa; border-left-color: #667eea;">
+      <div class="tip-header">
+        <span class="tip-number" style="background: #667eea;">✓</span>
+        <h3 class="tip-title">拆除阶段验收清单</h3>
+      </div>
+      <ul class="tip-list">
+        <li>所有下水管口已封堵保护，排水测试正常</li>
+        <li>墙面已铲至坚实基层，无空鼓、无松动层</li>
+        <li>渗水点已标记并处理或记录在案</li>
+        <li>烟道完好无损，周边清理干净</li>
+        <li>卫生间旧防水已彻底清除至红砖层</li>
+        <li>外露钢筋、金属件已切割并做防锈处理</li>
+        <li>燃气表已由燃气公司正规拆除</li>
+        <li>门洞切割规范，无暴力砸墙痕迹</li>
+        <li>旧线盒已清理，孔洞已填补</li>
+        <li>地面平整，凸起物已清除</li>
+        <li>垃圾已清运，现场整洁</li>
+      </ul>
+    </section>
+
+    <!-- 底部导航 -->
+    <div class="nav-links-bottom">
+      <a href="/renovation-tips" class="nav-link">
+        <span>←</span> 返回阶段列表
+      </a>
+      <a href="/contact" class="nav-link next">
+        需要专业指导？联系我们 →
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>
