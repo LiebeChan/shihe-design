@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>水电阶段注意事项 - 室合设计</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .tips-header {
+      padding: 8rem 2rem 3rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      text-align: center;
+      color: #fff;
+    }
+    .tips-header h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .tips-header .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+    }
+    
+    .tips-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .tip-section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid #4A90E2;
+    }
+    
+    .tip-section.warning {
+      border-left-color: #F5A623;
+    }
+    
+    .tip-section.danger {
+      border-left-color: #E74C3C;
+    }
+    
+    .tip-section.success {
+      border-left-color: #7ED321;
+    }
+    
+    .tip-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tip-number {
+      width: 32px;
+      height: 32px;
+      background: #4A90E2;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .tip-section.warning .tip-number { background: #F5A623; }
+    .tip-section.danger .tip-number { background: #E74C3C; }
+    .tip-section.success .tip-number { background: #7ED321; }
+    
+    .tip-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .tip-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .tip-list li {
+      padding: 0.6rem 0 0.6rem 1.5rem;
+      position: relative;
+      color: #555;
+      line-height: 1.7;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .tip-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .tip-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4A90E2;
+      font-weight: bold;
+    }
+    
+    .tip-section.warning .tip-list li::before { color: #F5A623; }
+    .tip-section.danger .tip-list li::before { color: #E74C3C; }
+    .tip-section.success .tip-list li::before { color: #7ED321; }
+    
+    .highlight-box {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-left: 3px solid #4A90E2;
+    }
+    
+    .highlight-box p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .highlight-box strong {
+      color: #333;
+    }
+    
+    .nav-links-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .nav-link {
+      color: #666;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: #1a1a1a;
+    }
+    
+    .nav-link.next {
+      color: #4A90E2;
+    }
+    
+    .nav-link.next:hover {
+      color: #357ABD;
+    }
+    
+    .intro-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    
+    .intro-banner h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .intro-banner p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+      <a href="/pricing">设计取费</a>
+    </div>
+  </nav>
+
+  <header class="tips-header">
+    <h1>水电阶段注意事项</h1>
+    <p class="subtitle">隐蔽工程，质量为本</p>
+  </header>
+
+  <main class="tips-content">
+    <div class="intro-banner">
+      <h2>⚡ 水电阶段的重要性</h2>
+      <p>水电是装修中的隐蔽工程，一旦完工就很难改动。质量不过关会导致漏水、短路、跳闸等严重后果。本阶段务必做到"材料过关、工艺规范、测试到位"，确保居住安全。</p>
+    </div>
+
+    <!-- 一、电路设计规划 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">1</span>
+        <h3 class="tip-title">电路设计规划</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>根据生活习惯设计回路</strong>，大功率电器（空调、热水器）单独回路</li>
+        <li>插座数量宁多勿少，客厅、卧室、厨房预留充足插座位置</li>
+        <li>弱电（网线、电视线）与强电保持30cm以上距离，避免信号干扰</li>
+        <li>开关位置考虑动线，门口、床头双控设计提升便利性</li>
+        <li>预留智能家居线路，为未来升级留空间</li>
+      </ul>
+    </section>
+
+    <!-- 二、电线选材标准 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">2</span>
+        <h3 class="tip-title">电线选材标准</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>必须使用国标铜芯线</strong>，拒绝铝线或非标线材</li>
+        <li>照明回路用2.5平方线，普通插座用2.5平方线</li>
+        <li>空调、热水器等大功率电器用4平方专线</li>
+        <li>入户主线建议用6-10平方线，满足全屋用电需求</li>
+        <li>检查电线绝缘层是否完好，有无3C认证标识</li>
+        <li>不同功率回路用不同颜色区分，便于后期检修</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>🚨 重要提醒：</strong>电线是隐蔽工程的核心材料，必须使用正规品牌（如熊猫、起帆、正泰等），切勿贪图便宜使用杂牌线，安全隐患极大。</p>
+      </div>
+    </section>
+
+    <!-- 三、水管选材与铺设 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">3</span>
+        <h3 class="tip-title">水管选材与铺设</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>给水管推荐PPR管</strong>，品牌选择伟星、日丰、金德等知名品牌</li>
+        <li>冷水管用S4系列，热水管用S3.2系列或S2.5系列</li>
+        <li>水管走顶不走地，便于检修且漏水易发现</li>
+        <li>冷热水管间距15cm，左热右冷，出水口平齐</li>
+        <li>水管穿墙必须加套管保护，避免墙体沉降挤压</li>
+        <li>所有接头必须热熔到位，杜绝渗漏隐患</li>
+      </ul>
+    </section>
+
+    <!-- 四、电路布线规范 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">4</span>
+        <h3 class="tip-title">电路布线规范</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>线管内线径不超过管径40%</strong>，保证散热和抽线空间</li>
+        <li>强弱电分管分槽，交叉处用锡箔纸屏蔽</li>
+        <li>电线接头必须在底盒内，禁止在管内接头</li>
+        <li>线管固定间距80-100cm，转弯处20-30cm加固定卡</li>
+        <li>插座高度统一：普通插座30cm，开关130cm，空调插座180-220cm</li>
+        <li>每个底盒预留15-20cm线头，方便后期接线</li>
+      </ul>
+    </section>
+
+    <!-- 五、卫生间防水施工 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">5</span>
+        <h3 class="tip-title">卫生间防水施工</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>防水高度：淋浴区180cm，洗手台120cm，其他30cm</strong></li>
+        <li>防水涂刷2-3遍，每遍干透后再刷下一遍</li>
+        <li>管根、地漏、阴阳角做加强处理，先刷堵漏王</li>
+        <li>门槛石下方必须做防水，防止水渗透到门外</li>
+        <li>墙面刚性防水，地面柔性防水，或通用型防水</li>
+        <li>防水完成后做48小时闭水试验，检查楼下无渗漏</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💡 专业提示：</strong>防水是装修中最不能省钱的环节。建议使用雨虹、德高、西卡等品牌防水涂料，包工包料价格约60-100元/㎡，切勿贪图便宜。</p>
+      </div>
+    </section>
+
+    <!-- 六、厨房防水与水电 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">6</span>
+        <h3 class="tip-title">厨房防水与水电</h3>
+      </div>
+      <ul class="tip-list">
+        <li>厨房地面必须做防水，墙面防水高度30cm</li>
+        <li>水槽下方预留2-3个插座，方便净水器、垃圾处理器</li>
+        <li>燃气灶下方预留插座，方便集成灶或消毒柜</li>
+        <li>冰箱单独回路，出差可单独断电</li>
+        <li>烟机插座高度220cm，隐藏在吊柜内</li>
+        <li>燃气热水器预留冷热水管和电源插座</li>
+      </ul>
+    </section>
+
+    <!-- 七、打压测试 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">7</span>
+        <h3 class="tip-title">水管打压测试</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>打压压力0.8-1.0MPa，保压30分钟以上</strong></li>
+        <li>压力下降不超过0.05MPa为合格</li>
+        <li>检查所有接头、阀门无渗漏、无变形</li>
+        <li>打压时逐个检查出水口，确保通畅</li>
+        <li>测试合格后拍照记录压力表读数</li>
+        <li>保留打压记录，作为验收凭证</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>⚠️ 注意：</strong>打压测试必须在泥工进场前完成，一旦漏水可及时修复。泥工贴砖后发现问题，返工成本极高。</p>
+      </div>
+    </section>
+
+    <!-- 八、电路验收测试 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">8</span>
+        <h3 class="tip-title">电路验收测试</h3>
+      </div>
+      <ul class="tip-list">
+        <li>使用验电器测试每个插座火线、零线、地线是否接对</li>
+        <li>检查漏电保护器是否正常工作，按测试按钮应跳闸</li>
+        <li>测试各回路断路器，标识清楚对应区域</li>
+        <li>用万用表测量电压是否稳定（220V±10%）</li>
+        <li>检查所有开关控制是否正确，双控是否正常</li>
+        <li>拍照记录配电箱回路分布，便于后期维护</li>
+      </ul>
+    </section>
+
+    <!-- 九、弱电系统布置 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">9</span>
+        <h3 class="tip-title">弱电系统布置</h3>
+      </div>
+      <ul class="tip-list">
+        <li>每个房间预留网线，推荐CAT6或CAT6A标准</li>
+        <li>客厅、主卧预留电视线或网线（IPTV用）</li>
+        <li>弱电箱位置合理，预留电源插座</li>
+        <li>考虑全屋WiFi覆盖，预留AP面板位置</li>
+        <li>智能家居预留零线，便于安装智能开关</li>
+        <li>监控摄像头预留电源和网络接口</li>
+      </ul>
+    </section>
+
+    <!-- 十、水电走向记录 -->
+    <section class="tip-section success">
+      <div class="tip-header">
+        <span class="tip-number">10</span>
+        <h3 class="tip-title">水电走向记录</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>水电完工后必须拍照/录像记录走向</strong></li>
+        <li>绘制水电走向图，标注尺寸和位置</li>
+        <li>保存电子版和纸质版，便于后期维修</li>
+        <li>墙面用标识胶带标记管线位置，防止安装时打穿</li>
+        <li>向业主交代水电分布，交接相关资料</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💡 建议：</strong>水电走向图是后期维修的重要依据。建议在瓷砖贴好后，用记号笔在隐蔽位置标注管线走向，方便日后查找。</p>
+      </div>
+    </section>
+
+    <!-- 十一、水电材料验收 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">11</span>
+        <h3 class="tip-title">水电材料验收</h3>
+      </div>
+      <ul class="tip-list">
+        <li>材料进场时业主务必到场验收</li>
+        <li>核对品牌、型号、规格是否与合同一致</li>
+        <li>检查电线是否有3C认证，水管是否有防伪码</li>
+        <li>清点数量，防止偷工减料</li>
+        <li>保留材料包装和发票，便于维权</li>
+        <li>发现假货或次品立即要求更换</li>
+      </ul>
+    </section>
+
+    <!-- 十二、水电施工安全 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">12</span>
+        <h3 class="tip-title">水电施工安全</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>施工期间关闭总电源，避免触电</strong></li>
+        <li>临时用电使用漏电保护器</li>
+        <li>严禁私拉乱接电线</li>
+        <li>焊接作业做好防火措施</li>
+        <li>施工现场保持通风</li>
+        <li>完工后清理现场，杜绝安全隐患</li>
+      </ul>
+    </section>
+
+    <!-- 水电验收清单 -->
+    <section class="tip-section" style="background: #f8f9fa; border-left-color: #667eea;">
+      <div class="tip-header">
+        <span class="tip-number" style="background: #667eea;">✓</span>
+        <h3 class="tip-title">水电阶段验收清单</h3>
+      </div>
+      <ul class="tip-list">
+        <li>电路回路设计合理，大功率电器单独回路</li>
+        <li>电线为国标铜芯线，线径符合要求</li>
+        <li>PPR水管品牌正规，冷热水管区分正确</li>
+        <li>强弱电分管分槽，间距符合规范</li>
+        <li>卫生间防水涂刷到位，闭水试验48小时合格</li>
+        <li>水管打压测试0.8-1.0MPa，保压30分钟合格</li>
+        <li>所有插座接线正确，漏电保护器工作正常</li>
+        <li>弱电布线规范，预留充足接口</li>
+        <li>水电走向已拍照记录，图纸已绘制</li>
+        <li>材料验收合格，无假货次品</li>
+        <li>施工现场清理完毕，无安全隐患</li>
+      </ul>
+    </section>
+
+    <!-- 底部导航 -->
+    <div class="nav-links-bottom">
+      <a href="/renovation-tips/demolition" class="nav-link">
+        <span>←</span> 上一阶段：拆除
+      </a>
+      <a href="/renovation-tips/carpentry" class="nav-link next">
+        下一阶段：木工 →
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>

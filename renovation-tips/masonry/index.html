@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>瓦工阶段注意事项 - 室合设计</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .tips-header {
+      padding: 8rem 2rem 3rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      text-align: center;
+      color: #fff;
+    }
+    .tips-header h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .tips-header .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+    }
+    
+    .tips-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .tip-section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid #4A90E2;
+    }
+    
+    .tip-section.warning {
+      border-left-color: #F5A623;
+    }
+    
+    .tip-section.danger {
+      border-left-color: #E74C3C;
+    }
+    
+    .tip-section.success {
+      border-left-color: #7ED321;
+    }
+    
+    .tip-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tip-number {
+      width: 32px;
+      height: 32px;
+      background: #4A90E2;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .tip-section.warning .tip-number { background: #F5A623; }
+    .tip-section.danger .tip-number { background: #E74C3C; }
+    .tip-section.success .tip-number { background: #7ED321; }
+    
+    .tip-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .tip-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .tip-list li {
+      padding: 0.6rem 0 0.6rem 1.5rem;
+      position: relative;
+      color: #555;
+      line-height: 1.7;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .tip-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .tip-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4A90E2;
+      font-weight: bold;
+    }
+    
+    .tip-section.warning .tip-list li::before { color: #F5A623; }
+    .tip-section.danger .tip-list li::before { color: #E74C3C; }
+    .tip-section.success .tip-list li::before { color: #7ED321; }
+    
+    .highlight-box {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-left: 3px solid #4A90E2;
+    }
+    
+    .highlight-box p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .highlight-box strong {
+      color: #333;
+    }
+    
+    .nav-links-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .nav-link {
+      color: #666;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: #1a1a1a;
+    }
+    
+    .nav-link.next {
+      color: #4A90E2;
+    }
+    
+    .nav-link.next:hover {
+      color: #357ABD;
+    }
+    
+    .intro-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    
+    .intro-banner h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .intro-banner p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+      <a href="/pricing">设计取费</a>
+    </div>
+  </nav>
+
+  <header class="tips-header">
+    <h1>瓦工阶段注意事项</h1>
+    <p class="subtitle">面子工程，精益求精</p>
+  </header>
+
+  <main class="tips-content">
+    <div class="intro-banner">
+      <h2>🧱 瓦工阶段的重要性</h2>
+      <p>瓦工是装修的"面子工程"，瓷砖铺贴质量直接影响整体美观和使用寿命。从防水到铺贴，从找平到勾缝，每个环节都需要精细施工。本阶段务必做到"平整度高、空鼓率低、美观度好"。</p>
+    </div>
+
+    <!-- 一、瓷砖选材 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">1</span>
+        <h3 class="tip-title">瓷砖选材要点</h3>
+      </div>
+      <ul class="tip-list">
+        <li>地砖选择全瓷砖或釉面砖，吸水率≤0.5%为佳</li>
+        <li>墙砖选择瓷片或全瓷砖，厨卫建议用全瓷砖</li>
+        <li>瓷砖到场检查色号、批次是否一致，避免色差</li>
+        <li>检查瓷砖平整度，将两块砖面对面贴合，缝隙均匀</li>
+        <li>检查瓷砖有无崩边、缺角、裂纹等瑕疵</li>
+        <li>大规格瓷砖（≥800mm）需考虑搬运和铺贴难度</li>
+      </ul>
+    </section>
+
+    <!-- 二、地面找平 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">2</span>
+        <h3 class="tip-title">地面找平处理</h3>
+      </div>
+      <ul class="tip-list">
+        <li>铺砖前地面必须找平，平整度误差≤3mm/2m</li>
+        <li>水泥砂浆找平厚度3-5cm，太薄易开裂</li>
+        <li>找平后洒水养护3-7天，防止开裂起砂</li>
+        <li>铺设木地板区域做自流平，平整度要求更高</li>
+        <li>找平前清理地面浮灰，涂刷界面剂增强粘结</li>
+        <li>预留铺砖高度，计算好门槛石过渡</li>
+      </ul>
+    </section>
+
+    <!-- 三、墙面拉毛处理 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">3</span>
+        <h3 class="tip-title">墙面拉毛处理</h3>
+      </div>
+      <ul class="tip-list">
+        <li>光滑墙面（如防水涂料表面）必须拉毛处理</li>
+        <li>拉毛用墙固或界面剂+水泥砂浆，增加附着力</li>
+        <li>拉毛后检查粗糙度，手摸有明显颗粒感</li>
+        <li>拉毛层干燥后再贴砖，避免粘结不牢</li>
+        <li>全瓷砖上墙必须刷背胶，双重保险防脱落</li>
+        <li>大规格墙砖建议用瓷砖胶薄贴法</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>🚨 重要提醒：</strong>防水层表面光滑，直接贴砖极易空鼓脱落。必须做拉毛处理或采用瓷砖胶薄贴工艺，这是瓷砖牢固的关键。</p>
+      </div>
+    </section>
+
+    <!-- 四、瓷砖铺贴工艺 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">4</span>
+        <h3 class="tip-title">瓷砖铺贴工艺</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>铺贴前瓷砖充分泡水（瓷片）</strong>，全瓷砖无需泡水</li>
+        <li>墙砖从下往上贴，地砖从里往外贴</li>
+        <li>瓷砖背面满浆，<strong>严禁点贴或半浆</strong></li>
+        <li>使用十字卡控制缝隙宽度，墙砖1.5-2mm，地砖2-3mm</li>
+        <li>铺贴后用橡皮锤敲实，排出空气</li>
+        <li>随时检查平整度，用靠尺检测误差≤2mm</li>
+      </ul>
+    </section>
+
+    <!-- 五、卫生间防水再确认 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">5</span>
+        <h3 class="tip-title">卫生间防水再确认</h3>
+      </div>
+      <ul class="tip-list">
+        <li>铺砖前再次检查防水层是否完好</li>
+        <li>地漏位置为最低点，坡度1-2%向地漏倾斜</li>
+        <li>门槛石下方必须做防水，形成闭合防水系统</li>
+        <li>墙地交接处、管根位置重点检查</li>
+        <li>建议墙压地工艺，防水效果更好</li>
+        <li>铺砖时避免破坏防水层，工具轻拿轻放</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💡 建议：</strong>卫生间建议采用"墙压地"工艺，即墙砖最下排留空，等地砖铺好后再贴。这样墙地缝隙小，防水效果更好，外观也更美观。</p>
+      </div>
+    </section>
+
+    <!-- 六、地漏安装 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">6</span>
+        <h3 class="tip-title">地漏安装</h3>
+      </div>
+      <ul class="tip-list">
+        <li>地漏位置为地面最低点，排水坡度充足</li>
+        <li>地漏安装低于瓷砖面1-2mm，便于排水</li>
+        <li>地漏周边瓷砖做回字形切割，排水更顺畅</li>
+        <li>地漏芯可拆卸，便于后期清理</li>
+        <li>安装后倒水测试，检查排水速度和密封性</li>
+        <li>选择防臭地漏，水封深度≥5cm</li>
+      </ul>
+    </section>
+
+    <!-- 七、阴阳角处理 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">7</span>
+        <h3 class="tip-title">阴阳角处理</h3>
+      </div>
+      <ul class="tip-list">
+        <li>阳角处理：45°倒角碰角或阳角条</li>
+        <li>45°倒角美观但易崩边，需精细打磨</li>
+        <li>阳角条保护性好，选择同色或金属材质</li>
+        <li>阴角检查是否90°，误差≤3mm</li>
+        <li>阴阳角瓷砖切割整齐，缝隙均匀</li>
+        <li>阳角处瓷砖背面磨薄，避免突出墙面</li>
+      </ul>
+    </section>
+
+    <!-- 八、开孔与切割 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">8</span>
+        <h3 class="tip-title">开孔与切割</h3>
+      </div>
+      <ul class="tip-list">
+        <li>开关插座开孔用专用开孔器，边缘整齐</li>
+        <li>水管、龙头位置预留准确，孔径合适</li>
+        <li>切割瓷砖用切割机加水，减少崩边</li>
+        <li>小条砖尽量藏在隐蔽位置（如墙角、家具后）</li>
+        <li>切割面打磨光滑，避免划伤</li>
+        <li>异形切割提前排版，减少浪费</li>
+      </ul>
+    </section>
+
+    <!-- 九、瓷砖勾缝 -->
+    <section class="tip-section success">
+      <div class="tip-header">
+        <span class="tip-number">9</span>
+        <h3 class="tip-title">瓷砖勾缝</h3>
+      </div>
+      <ul class="tip-list">
+        <li>勾缝在铺砖后24-48小时进行，瓷砖已固定</li>
+        <li>清理缝隙内杂物，保持干燥</li>
+        <li>勾缝剂选择防水防霉型，颜色与瓷砖搭配</li>
+        <li>美缝剂效果更佳，但成本较高</li>
+        <li>勾缝饱满均匀，与瓷砖面齐平或略低</li>
+        <li>勾缝后及时清理残留，避免干固难清</li>
+      </ul>
+    </section>
+
+    <!-- 十、成品保护 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">10</span>
+        <h3 class="tip-title">成品保护</h3>
+      </div>
+      <ul class="tip-list">
+        <li>铺砖后及时清理表面水泥浆，防止干固</li>
+        <li>地面铺保护膜或纸板，防止划伤</li>
+        <li>阳角处加护角条保护，防止磕碰</li>
+        <li>禁止在已铺砖面上切割、堆放重物</li>
+        <li>后续施工注意保护，避免污染</li>
+        <li>发现问题及时修补，不要拖延</li>
+      </ul>
+    </section>
+
+    <!-- 十一、空鼓检查 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">11</span>
+        <h3 class="tip-title">空鼓检查</h3>
+      </div>
+      <ul class="tip-list">
+        <li>用空鼓锤敲击检查，<strong>空鼓率≤5%</strong></li>
+        <li>重点检查边角位置，最容易空鼓</li>
+        <li>单片砖空鼓面积≤15%，边角空鼓≤10%</li>
+        <li>发现空鼓及时返工，重新铺贴</li>
+        <li>验收时做好标记，拍照记录</li>
+        <li>大面积空鼓必须全部返工，不能凑合</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>⚠️ 注意：</strong>瓷砖空鼓是常见问题，验收时必须仔细检查。空鼓的瓷砖容易开裂、脱落，后期维修成本极高。发现空鼓坚决要求返工。</p>
+      </div>
+    </section>
+
+    <!-- 十二、瓦工材料验收 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">12</span>
+        <h3 class="tip-title">瓦工材料验收</h3>
+      </div>
+      <ul class="tip-list">
+        <li>水泥用32.5或42.5标号，检查生产日期</li>
+        <li>沙子用中粗河沙，含泥量≤3%</li>
+        <li>瓷砖胶选择品牌产品，按说明配比</li>
+        <li>勾缝剂/美缝剂检查颜色和保质期</li>
+        <li>地漏、角阀等五金检查品牌和规格</li>
+        <li>材料按需进场，避免堆积占用空间</li>
+      </ul>
+    </section>
+
+    <!-- 瓦工验收清单 -->
+    <section class="tip-section" style="background: #f8f9fa; border-left-color: #667eea;">
+      <div class="tip-header">
+        <span class="tip-number" style="background: #667eea;">✓</span>
+        <h3 class="tip-title">瓦工阶段验收清单</h3>
+      </div>
+      <ul class="tip-list">
+        <li>瓷砖色号一致，无色差</li>
+        <li>地面平整度误差≤3mm/2m</li>
+        <li>墙面拉毛到位，全瓷砖刷背胶</li>
+        <li>瓷砖满浆铺贴，无点贴现象</li>
+        <li>卫生间防水完好，坡度正确</li>
+        <li>地漏安装正确，排水顺畅</li>
+        <li>阴阳角处理规范，角度准确</li>
+        <li>开孔位置准确，边缘整齐</li>
+        <li>勾缝饱满均匀，颜色一致</li>
+        <li>空鼓率≤5%，无大面积空鼓</li>
+        <li>成品保护到位，表面清洁</li>
+        <li>材料验收合格，无偷工减料</li>
+      </ul>
+    </section>
+
+    <!-- 底部导航 -->
+    <div class="nav-links-bottom">
+      <a href="/renovation-tips/carpentry" class="nav-link">
+        <span>←</span> 上一阶段：木工
+      </a>
+      <a href="/renovation-tips/painting" class="nav-link next">
+        下一阶段：油工 →
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>

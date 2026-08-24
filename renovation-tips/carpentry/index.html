@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>木工阶段注意事项 - 室合设计</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .tips-header {
+      padding: 8rem 2rem 3rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      text-align: center;
+      color: #fff;
+    }
+    .tips-header h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .tips-header .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+    }
+    
+    .tips-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .tip-section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid #4A90E2;
+    }
+    
+    .tip-section.warning {
+      border-left-color: #F5A623;
+    }
+    
+    .tip-section.danger {
+      border-left-color: #E74C3C;
+    }
+    
+    .tip-section.success {
+      border-left-color: #7ED321;
+    }
+    
+    .tip-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tip-number {
+      width: 32px;
+      height: 32px;
+      background: #4A90E2;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .tip-section.warning .tip-number { background: #F5A623; }
+    .tip-section.danger .tip-number { background: #E74C3C; }
+    .tip-section.success .tip-number { background: #7ED321; }
+    
+    .tip-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .tip-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .tip-list li {
+      padding: 0.6rem 0 0.6rem 1.5rem;
+      position: relative;
+      color: #555;
+      line-height: 1.7;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .tip-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .tip-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4A90E2;
+      font-weight: bold;
+    }
+    
+    .tip-section.warning .tip-list li::before { color: #F5A623; }
+    .tip-section.danger .tip-list li::before { color: #E74C3C; }
+    .tip-section.success .tip-list li::before { color: #7ED321; }
+    
+    .highlight-box {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-left: 3px solid #4A90E2;
+    }
+    
+    .highlight-box p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .highlight-box strong {
+      color: #333;
+    }
+    
+    .nav-links-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .nav-link {
+      color: #666;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: #1a1a1a;
+    }
+    
+    .nav-link.next {
+      color: #4A90E2;
+    }
+    
+    .nav-link.next:hover {
+      color: #357ABD;
+    }
+    
+    .intro-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    
+    .intro-banner h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .intro-banner p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+      <a href="/pricing">设计取费</a>
+    </div>
+  </nav>
+
+  <header class="tips-header">
+    <h1>木工阶段注意事项</h1>
+    <p class="subtitle">结构定型，细节为王</p>
+  </header>
+
+  <main class="tips-content">
+    <div class="intro-banner">
+      <h2>🔨 木工阶段的重要性</h2>
+      <p>木工是装修的造型阶段，决定了空间的整体轮廓和美感。从吊顶到柜体，从门窗套到造型墙，木工手艺直接影响装修品质。本阶段务必做到"尺寸精准、结构稳固、收口细致"。</p>
+    </div>
+
+    <!-- 一、吊顶龙骨施工 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">1</span>
+        <h3 class="tip-title">吊顶龙骨施工</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>轻钢龙骨优于木龙骨</strong>，防火防潮不易变形</li>
+        <li>主龙骨间距≤100cm，副龙骨间距≤40cm</li>
+        <li>龙骨与墙面连接用膨胀螺丝固定，牢固可靠</li>
+        <li>吊顶转角处用L型整板，<strong>严禁拼接</strong>，防止开裂</li>
+        <li>灯具、浴霸等重物位置必须加设吊杆或加固龙骨</li>
+        <li>龙骨安装完成后检查平整度，误差≤3mm/2m</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>🚨 重要提醒：</strong>厨房卫生间必须用轻钢龙骨，木龙骨易受潮变形。吊顶转角处是最容易开裂的位置，必须用整板切割成L型，这是防开裂的关键。</p>
+      </div>
+    </section>
+
+    <!-- 二、石膏板安装 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">2</span>
+        <h3 class="tip-title">石膏板安装</h3>
+      </div>
+      <ul class="tip-list">
+        <li>石膏板品牌选择龙牌、可耐福、圣戈班等知名品牌</li>
+        <li>石膏板与龙骨用自攻螺丝固定，<strong>严禁用枪钉</strong></li>
+        <li>螺丝间距≤20cm，距板边1.5-2cm，沉入纸面0.5mm</li>
+        <li>双层石膏板错缝安装，接缝不在同一龙骨上</li>
+        <li>板与板之间留3-5mm缝隙，便于填缝处理</li>
+        <li>空调风口、检修口位置提前预留，边框加固</li>
+      </ul>
+    </section>
+
+    <!-- 三、窗帘盒制作 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">3</span>
+        <h3 class="tip-title">窗帘盒制作</h3>
+      </div>
+      <ul class="tip-list">
+        <li>窗帘盒宽度：单层窗帘15cm，双层窗帘18-20cm</li>
+        <li>窗帘盒深度≥15cm，遮挡窗帘轨道和顶部漏光</li>
+        <li>电动窗帘预留电源插座，位置在窗帘盒内侧</li>
+        <li>窗帘盒底板必须水平，两侧板垂直</li>
+        <li>与墙面接缝处贴牛皮纸或网格布防开裂</li>
+        <li>窗帘盒内侧刷漆处理，避免露出毛坯</li>
+      </ul>
+    </section>
+
+    <!-- 四、门套窗套制作 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">4</span>
+        <h3 class="tip-title">门套窗套制作</h3>
+      </div>
+      <ul class="tip-list">
+        <li>门套基层用欧松板或木工板，<strong>严禁用密度板</strong></li>
+        <li>门套垂直度误差≤2mm，水平度误差≤1mm</li>
+        <li>门套与墙体缝隙用发泡胶填充，外侧打胶收口</li>
+        <li>卫生间门套底部离地1-2cm，防止受潮</li>
+        <li>窗套注意窗台板坡度，向外倾斜防止积水</li>
+        <li>门套安装前检查门洞尺寸，误差过大需修正</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💡 建议：</strong>门套基层推荐用欧松板（OSB板），环保性和稳定性都优于传统木工板。密度板遇水膨胀变形严重，严禁用于门套基层。</p>
+      </div>
+    </section>
+
+    <!-- 五、隔墙施工 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">5</span>
+        <h3 class="tip-title">隔墙施工</h3>
+      </div>
+      <ul class="tip-list">
+        <li>轻钢龙骨隔墙龙骨间距≤40cm，增加稳定性</li>
+        <li>石膏板双面封板，<strong>严禁单面封板</strong></li>
+        <li>隔音要求高时中间填充岩棉或玻璃棉</li>
+        <li>隔墙底部用混凝土或红砖砌筑10-15cm地梁</li>
+        <li>门洞位置加设方钢或木方加固</li>
+        <li>墙面挂重物位置提前加固，预留承重能力</li>
+      </ul>
+    </section>
+
+    <!-- 六、造型墙制作 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">6</span>
+        <h3 class="tip-title">造型墙/背景墙制作</h3>
+      </div>
+      <ul class="tip-list">
+        <li>造型墙基层用木工板或欧松板打底</li>
+        <li>木饰面、护墙板安装前检查含水率</li>
+        <li>石材、岩板背景墙用干挂或结构胶粘贴</li>
+        <li>电视背景墙预留50管，隐藏电线</li>
+        <li>灯带槽预留到位，变压器隐藏放置</li>
+        <li>不同材质交接处做好收口处理</li>
+      </ul>
+    </section>
+
+    <!-- 七、柜子制作/安装 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">7</span>
+        <h3 class="tip-title">柜子制作与安装</h3>
+      </div>
+      <ul class="tip-list">
+        <li>柜体板材选择E0或E1级环保标准</li>
+        <li>柜体与墙面、地面、顶面缝隙≤2mm</li>
+        <li>柜门缝隙均匀，上下左右误差≤1mm</li>
+        <li>铰链、滑轨用百隆、海蒂诗等进口五金</li>
+        <li>柜体固定牢固，防倾倒（尤其高柜）</li>
+        <li>内部层板用L型连接件或隐形件，更美观</li>
+      </ul>
+    </section>
+
+    <!-- 八、吊顶灯具开孔 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">8</span>
+        <h3 class="tip-title">吊顶灯具开孔</h3>
+      </div>
+      <ul class="tip-list">
+        <li>筒灯、射灯开孔位置按设计图纸精确定位</li>
+        <li>开孔避开龙骨位置，必要时调整龙骨</li>
+        <li>开孔尺寸与灯具匹配，过大过小都影响安装</li>
+        <li>灯孔边缘用砂纸打磨光滑，避免割线</li>
+        <li>大型灯具（>3kg）必须直接固定在原顶</li>
+        <li>开孔后清理碎屑，保持吊顶内部清洁</li>
+      </ul>
+    </section>
+
+    <!-- 九、空调出风口制作 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">9</span>
+        <h3 class="tip-title">空调出风口/回风口制作</h3>
+      </div>
+      <ul class="tip-list">
+        <li>出风口、回风口尺寸按空调厂家要求预留</li>
+        <li>出风口与回风口间距≥1.5m，避免短路</li>
+        <li>风口边框用木工板或石膏板制作，平整牢固</li>
+        <li>加长出风口内部刷黑处理，视觉更统一</li>
+        <li>风口位置避开灯带、吊灯等遮挡物</li>
+        <li>预留检修口，尺寸≥40×40cm</li>
+      </ul>
+    </section>
+
+    <!-- 十、木工收口处理 -->
+    <section class="tip-section success">
+      <div class="tip-header">
+        <span class="tip-number">10</span>
+        <h3 class="tip-title">木工收口处理</h3>
+      </div>
+      <ul class="tip-list">
+        <li>石膏板接缝处倒角45°，便于填缝</li>
+        <li>螺丝眼涂刷防锈漆，防止后期返锈</li>
+        <li>板与板接缝贴牛皮纸或网格布防开裂</li>
+        <li>墙面与吊顶交接处贴美纹纸或打胶收口</li>
+        <li>木饰面与墙面、地面交接处打胶处理</li>
+        <li>所有钉眼、缝隙修补平整后再刷漆</li>
+      </ul>
+    </section>
+
+    <!-- 十一、木工材料验收 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">11</span>
+        <h3 class="tip-title">木工材料验收</h3>
+      </div>
+      <ul class="tip-list">
+        <li>石膏板检查品牌、厚度（通常9.5mm或12mm）</li>
+        <li>龙骨检查壁厚，轻钢龙骨≥0.6mm</li>
+        <li>木工板、欧松板检查环保等级和厚度</li>
+        <li>木饰面检查色差、纹理，同一区域尽量一致</li>
+        <li>五金件检查品牌、规格、数量</li>
+        <li>材料进场后妥善存放，避免受潮变形</li>
+      </ul>
+    </section>
+
+    <!-- 十二、木工安全施工 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">12</span>
+        <h3 class="tip-title">木工安全施工</h3>
+      </div>
+      <ul class="tip-list">
+        <li>切割板材做好防尘措施，佩戴防护口罩</li>
+        <li>电锯、电钻等工具规范使用，专人操作</li>
+        <li>高空作业（吊顶）使用稳固的脚手架或人字梯</li>
+        <li>施工现场禁止吸烟，木屑及时清理</li>
+        <li>电动工具使用后断电，妥善保管</li>
+        <li>完工后清理木屑，消除火灾隐患</li>
+      </ul>
+    </section>
+
+    <!-- 木工验收清单 -->
+    <section class="tip-section" style="background: #f8f9fa; border-left-color: #667eea;">
+      <div class="tip-header">
+        <span class="tip-number" style="background: #667eea;">✓</span>
+        <h3 class="tip-title">木工阶段验收清单</h3>
+      </div>
+      <ul class="tip-list">
+        <li>龙骨间距符合规范，固定牢固</li>
+        <li>吊顶转角处使用L型整板，无拼接</li>
+        <li>石膏板用自攻螺丝固定，间距合理</li>
+        <li>窗帘盒尺寸准确，水平垂直</li>
+        <li>门套窗套垂直平整，缝隙均匀</li>
+        <li>隔墙双面封板，隔音填充到位</li>
+        <li>柜子安装牢固，门板缝隙均匀</li>
+        <li>灯具开孔位置准确，避开龙骨</li>
+        <li>空调出风口尺寸正确，位置合理</li>
+        <li>螺丝眼已刷防锈漆，接缝已做防裂处理</li>
+        <li>材料验收合格，无偷工减料</li>
+        <li>现场清理干净，无安全隐患</li>
+      </ul>
+    </section>
+
+    <!-- 底部导航 -->
+    <div class="nav-links-bottom">
+      <a href="/renovation-tips/plumbing" class="nav-link">
+        <span>←</span> 上一阶段：水电
+      </a>
+      <a href="/renovation-tips/masonry" class="nav-link next">
+        下一阶段：瓦工 →
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>

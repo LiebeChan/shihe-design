@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>油工阶段注意事项 - 室合设计</title>
+  <link rel="stylesheet" href="../../style.css">
+  <style>
+    .tips-header {
+      padding: 8rem 2rem 3rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+      text-align: center;
+      color: #fff;
+    }
+    .tips-header h1 {
+      font-size: 2.2rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+    .tips-header .subtitle {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+    }
+    
+    .tips-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    
+    .tip-section {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-left: 4px solid #4A90E2;
+    }
+    
+    .tip-section.warning {
+      border-left-color: #F5A623;
+    }
+    
+    .tip-section.danger {
+      border-left-color: #E74C3C;
+    }
+    
+    .tip-section.success {
+      border-left-color: #7ED321;
+    }
+    
+    .tip-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    
+    .tip-number {
+      width: 32px;
+      height: 32px;
+      background: #4A90E2;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .tip-section.warning .tip-number { background: #F5A623; }
+    .tip-section.danger .tip-number { background: #E74C3C; }
+    .tip-section.success .tip-number { background: #7ED321; }
+    
+    .tip-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .tip-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .tip-list li {
+      padding: 0.6rem 0 0.6rem 1.5rem;
+      position: relative;
+      color: #555;
+      line-height: 1.7;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .tip-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .tip-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #4A90E2;
+      font-weight: bold;
+    }
+    
+    .tip-section.warning .tip-list li::before { color: #F5A623; }
+    .tip-section.danger .tip-list li::before { color: #E74C3C; }
+    .tip-section.success .tip-list li::before { color: #7ED321; }
+    
+    .highlight-box {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-left: 3px solid #4A90E2;
+    }
+    
+    .highlight-box p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+    
+    .highlight-box strong {
+      color: #333;
+    }
+    
+    .nav-links-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+    }
+    
+    .nav-link {
+      color: #666;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.3s;
+    }
+    
+    .nav-link:hover {
+      color: #1a1a1a;
+    }
+    
+    .nav-link.next {
+      color: #4A90E2;
+    }
+    
+    .nav-link.next:hover {
+      color: #357ABD;
+    }
+    
+    .intro-banner {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    
+    .intro-banner h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .intro-banner p {
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="/" class="logo"><img src="../../images/logo.png" alt="室合设计" class="logo-img">室合设计</a>
+    <div class="nav-links">
+      <a href="/">首页</a>
+      <a href="/about">关于我</a>
+      <a href="/contact">联系我</a>
+      <a href="/pricing">设计取费</a>
+    </div>
+  </nav>
+
+  <header class="tips-header">
+    <h1>油工阶段注意事项</h1>
+    <p class="subtitle">色彩呈现，细节定成败</p>
+  </header>
+
+  <main class="tips-content">
+    <div class="intro-banner">
+      <h2>🎨 油工阶段的重要性</h2>
+      <p>油工是装修的最后美化阶段，决定了空间的整体色调和质感。从基层处理到面漆涂刷，每一步都影响最终效果。本阶段务必做到"基层平整、涂刷均匀、无色差无流坠"。</p>
+    </div>
+
+    <!-- 一、墙面基层检查 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">1</span>
+        <h3 class="tip-title">墙面基层检查</h3>
+      </div>
+      <ul class="tip-list">
+        <li>检查墙面有无空鼓、开裂，发现问题先修补</li>
+        <li>铲除墙面浮灰、油污，保持干净干燥</li>
+        <li>石膏板接缝处已贴牛皮纸或网格布</li>
+        <li>螺丝眼已刷防锈漆，防止后期返锈</li>
+        <li>墙面平整度误差≤3mm/2m，否则需找平</li>
+        <li>旧墙面需铲除原有漆层，重新做基层</li>
+      </ul>
+    </section>
+
+    <!-- 二、石膏找平 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">2</span>
+        <h3 class="tip-title">石膏找平</h3>
+      </div>
+      <ul class="tip-list">
+        <li>墙面不平处先用石膏找平，厚度≤10mm</li>
+        <li>阴阳角用阴阳角条找直，保证垂直水平</li>
+        <li>门洞、窗洞周边重点找平，便于安装</li>
+        <li>石膏干燥后再进行下一步，避免开裂</li>
+        <li>找平后打磨光滑，无明显的凹凸</li>
+        <li>不同材质交接处贴网格布防开裂</li>
+      </ul>
+    </section>
+
+    <!-- 三、批刮腻子 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">3</span>
+        <h3 class="tip-title">批刮腻子</h3>
+      </div>
+      <ul class="tip-list">
+        <li>腻子选择耐水型（N型），尤其厨卫区域</li>
+        <li>腻子批刮2-3遍，每遍干透后再刮下一遍</li>
+        <li>每遍厚度1-2mm，过厚易开裂脱落</li>
+        <li>腻子层总厚度≤3mm，太厚影响质量</li>
+        <li>批刮方向交叉，第一遍横刮，第二遍竖刮</li>
+        <li>边角位置处理细致，无漏刮</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💡 建议：</strong>腻子层不宜过厚，过厚是墙面开裂的主要原因。如果墙面平整度差，应先用石膏找平，而不是靠腻子找厚。</p>
+      </div>
+    </section>
+
+    <!-- 四、腻子打磨 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">4</span>
+        <h3 class="tip-title">腻子打磨</h3>
+      </div>
+      <ul class="tip-list">
+        <li>最后一遍腻子干透后打磨，用240-360目砂纸</li>
+        <li>打磨方向均匀，避免横向纵向乱磨</li>
+        <li>打磨后墙面光滑细腻，无明显砂纸痕</li>
+        <li>用靠尺检查平整度，误差≤2mm/2m</li>
+        <li>打磨后清理浮灰，用鸡毛掸或吸尘器</li>
+        <li>边角位置手工打磨，保证整齐</li>
+      </ul>
+    </section>
+
+    <!-- 五、底漆涂刷 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">5</span>
+        <h3 class="tip-title">底漆涂刷</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>必须涂刷底漆</strong>，不可省略</li>
+        <li>底漆封闭墙面，增强面漆附着力</li>
+        <li>底漆涂刷一遍，均匀覆盖无漏刷</li>
+        <li>底漆干透后再刷面漆，通常4-6小时</li>
+        <li>边角用羊毛刷，大面用滚筒</li>
+        <li>底漆颜色与面漆接近，便于观察覆盖</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>⚠️ 注意：</strong>很多工人为了省事会跳过底漆，这是错误的。底漆能提高面漆附着力、封闭墙面碱性、减少面漆用量，一定不能省略。</p>
+      </div>
+    </section>
+
+    <!-- 六、面漆涂刷 -->
+    <section class="tip-section danger">
+      <div class="tip-header">
+        <span class="tip-number">6</span>
+        <h3 class="tip-title">面漆涂刷</h3>
+      </div>
+      <ul class="tip-list">
+        <li>面漆涂刷2遍，每遍干透后再刷下一遍</li>
+        <li>乳胶漆加水比例≤20%，过多影响遮盖力</li>
+        <li>深色漆尽量不加水，或加专用色浆</li>
+        <li>涂刷方向一致，先边角后大面</li>
+        <li>滚筒滚涂，方向均匀，无明显的滚筒印</li>
+        <li>第二遍与第一遍方向垂直，覆盖更均匀</li>
+      </ul>
+    </section>
+
+    <!-- 七、油漆颜色选择 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">7</span>
+        <h3 class="tip-title">油漆颜色选择</h3>
+      </div>
+      <ul class="tip-list">
+        <li>颜色选择考虑采光，暗房用浅色提亮</li>
+        <li>大面积墙面用中性色，小面积用跳色</li>
+        <li>先在小面积试刷，确认颜色后再大面积施工</li>
+        <li>不同批次油漆可能有色差，一次调足</li>
+        <li>保留色号和配方，便于后期补漆</li>
+        <li>考虑家具、地板颜色搭配，整体协调</li>
+      </ul>
+    </section>
+
+    <!-- 八、涂刷环境要求 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">8</span>
+        <h3 class="tip-title">涂刷环境要求</h3>
+      </div>
+      <ul class="tip-list">
+        <li>温度5-35℃为宜，<strong>低于5℃禁止施工</strong></li>
+        <li>湿度≤85%，雨天避免涂刷</li>
+        <li>保持通风，但避免强风直吹</li>
+        <li>涂刷后关闭门窗2-3天，阴干防开裂</li>
+        <li>避免阳光直射，防止干燥过快</li>
+        <li>冬季施工注意防冻，必要时加防冻剂</li>
+      </ul>
+    </section>
+
+    <!-- 九、分色与保护 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">9</span>
+        <h3 class="tip-title">分色与保护</h3>
+      </div>
+      <ul class="tip-list">
+        <li>不同颜色交接处贴美纹纸，撕除时干净利落</li>
+        <li>美纹纸在漆未干时撕除，避免带起漆膜</li>
+        <li>地板、门窗、柜子做好保护，避免污染</li>
+        <li>开关插座面板拆下或贴美纹纸保护</li>
+        <li>踢脚线、门套等交接处打胶收口</li>
+        <li>发现污染及时清理，干固后难处理</li>
+      </ul>
+    </section>
+
+    <!-- 十、常见质量问题 -->
+    <section class="tip-section warning">
+      <div class="tip-header">
+        <span class="tip-number">10</span>
+        <h3 class="tip-title">常见质量问题及预防</h3>
+      </div>
+      <ul class="tip-list">
+        <li><strong>开裂</strong>：基层处理不当、腻子过厚、干燥过快</li>
+        <li><strong>起皮</strong>：基层潮湿、油污未清理、未刷底漆</li>
+        <li><strong>流坠</strong>：漆太稀、一次涂刷过厚、垂直面施工</li>
+        <li><strong>色差</strong>：不同批次、加水比例不同、未搅拌均匀</li>
+        <li><strong>刷痕</strong>：滚筒质量差、施工技术差、漆太稠</li>
+        <li><strong>返碱</strong>：基层碱性过高、未刷封闭底漆</li>
+      </ul>
+    </section>
+
+    <!-- 十一、油漆材料选择 -->
+    <section class="tip-section success">
+      <div class="tip-header">
+        <span class="tip-number">11</span>
+        <h3 class="tip-title">油漆材料选择</h3>
+      </div>
+      <ul class="tip-list">
+        <li>乳胶漆选择知名品牌：立邦、多乐士、都芳、芬琳等</li>
+        <li>关注环保指标，VOC含量越低越好</li>
+        <li>耐擦洗次数≥6000次，便于后期清洁</li>
+        <li>遮盖力好的漆省工省料，性价比高</li>
+        <li>底漆与面漆配套使用，同品牌同系列</li>
+        <li>计算好用量，避免浪费或不够</li>
+      </ul>
+      <div class="highlight-box">
+        <p><strong>💰 省钱提示：</strong>乳胶漆不必追求进口高端款，国产品牌的中端产品性价比最高。重点看环保指标和耐擦洗次数，这两个参数最关键。</p>
+      </div>
+    </section>
+
+    <!-- 十二、验收与保养 -->
+    <section class="tip-section">
+      <div class="tip-header">
+        <span class="tip-number">12</span>
+        <h3 class="tip-title">验收与保养</h3>
+      </div>
+      <ul class="tip-list">
+        <li>验收在涂刷完成7天后进行，漆膜完全干燥</li>
+        <li>检查墙面平整度、光滑度，无明显瑕疵</li>
+        <li>检查颜色均匀，无色差、无流坠、无刷痕</li>
+        <li>用湿布擦拭测试，不掉粉、不起皮</li>
+        <li>保留剩余油漆，便于后期修补</li>
+        <li>入住后避免硬物碰撞，定期清洁保养</li>
+      </ul>
+    </section>
+
+    <!-- 油工验收清单 -->
+    <section class="tip-section" style="background: #f8f9fa; border-left-color: #667eea;">
+      <div class="tip-header">
+        <span class="tip-number" style="background: #667eea;">✓</span>
+        <h3 class="tip-title">油工阶段验收清单</h3>
+      </div>
+      <ul class="tip-list">
+        <li>墙面基层干净、平整、无空鼓开裂</li>
+        <li>石膏找平到位，阴阳角垂直水平</li>
+        <li>腻子批刮2-3遍，打磨光滑细腻</li>
+        <li>底漆涂刷一遍，覆盖均匀</li>
+        <li>面漆涂刷2遍，颜色均匀无色差</li>
+        <li>无流坠、无刷痕、无起皮、无开裂</li>
+        <li>分色清晰，交界整齐</li>
+        <li>成品保护到位，无污染</li>
+        <li>墙面平整度误差≤2mm/2m</li>
+        <li>湿布擦拭不掉粉、不起皮</li>
+        <li>材料验收合格，环保达标</li>
+        <li>剩余油漆已保留，便于修补</li>
+      </ul>
+    </section>
+
+    <!-- 底部导航 -->
+    <div class="nav-links-bottom">
+      <a href="/renovation-tips/masonry" class="nav-link">
+        <span>←</span> 上一阶段：瓦工
+      </a>
+      <a href="/renovation-tips/installation" class="nav-link next">
+        下一阶段：安装 →
+      </a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>室合设计 © 2026</p>
+  </footer>
+</body>
+</html>
