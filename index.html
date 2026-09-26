@@ -293,6 +293,101 @@
       return botPatterns.some(pattern => ua.includes(pattern));
     }
     
+    // 页面名称映射
+    const pageNames = {
+      '/': '首页',
+      '/about': '关于我',
+      '/contact': '联系我',
+      '/pricing': '设计取费',
+      '/money': '关于钱',
+      '/testimonials': '客户评价',
+      '/deliverables': '设计交付',
+      '/styles/': '风格指南',
+      '/gallery': '摄影作品集',
+      '/39': '39平住宅',
+      '/4': '一根梁的家',
+      '/70': '1970学区房',
+      '/10': '极致收纳的家',
+      '/11': '老年人的执念',
+      '/12': '酷阿姨的空中城堡',
+      '/naifufu': '奶fufu的家',
+      '/chaobei': '朝北户型',
+      '/menglong': '梦幻少女的家',
+      '/paodaofang': '跑道房',
+      '/5': '长沙洋湖天街',
+      '/6': '西安香醍天街',
+      '/8': '杭州大江东天街',
+      '/7': '武汉东湖综合体',
+      '/9': '长沙芙蓉天街',
+      '/dongan': '成都东安湖天街',
+      '/ace-cafe': 'ACE Cafe',
+      '/2': '社区咖啡店',
+      '/hutong-jewelry': '胡同珠宝店',
+      '/miomi': '美瞳门店',
+      '/miomi-1': '美瞳品牌门店',
+      '/3': '办公空间改造'
+    };
+    
+    // 获取页面友好名称
+    function getPageName(path) {
+      return pageNames[path] || path;
+    }
+    
+    // 访客追踪系统
+    const VisitorTracker = {
+      // 记录页面访问
+      recordPageView() {
+        const path = window.location.pathname;
+        const history = this.getPageHistory();
+        history.push({
+          page: path,
+          name: getPageName(path),
+          time: new Date().toLocaleTimeString('zh-CN'),
+          timestamp: Date.now()
+        });
+        sessionStorage.setItem('shihe_pageHistory', JSON.stringify(history));
+        return history;
+      },
+      
+      // 获取页面访问历史
+      getPageHistory() {
+        const history = sessionStorage.getItem('shihe_pageHistory');
+        return history ? JSON.parse(history) : [];
+      },
+      
+      // 计算停留时长
+      getDurations() {
+        const history = this.getPageHistory();
+        const durations = [];
+        for (let i = 0; i < history.length; i++) {
+          const current = history[i];
+          const next = history[i + 1];
+          const duration = next ? (next.timestamp - current.timestamp) : (Date.now() - current.timestamp);
+          durations.push({
+            page: current.name,
+            duration: Math.floor(duration / 1000)
+          });
+        }
+        return durations;
+      },
+      
+      // 格式化时长
+      formatDuration(seconds) {
+        if (seconds < 60) return seconds + '秒';
+        if (seconds < 3600) {
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          return mins + '分' + (secs > 0 ? secs + '秒' : '');
+        }
+        const hours = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        return hours + '小时' + (mins > 0 ? mins + '分' : '');
+      }
+    };
+    
+    // 记录当前页面
+    VisitorTracker.recordPageView();
+    
     // 如果不是爬虫，发送访客提醒
     if (!isBot()) {
       // 获取页面信息
@@ -330,24 +425,80 @@
       const source = getSource(rawReferrer);
       const device = getDeviceInfo();
       
-      // 发送推送
-      fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: 'title=' + encodeURIComponent('有新访客访问网站') + 
-              '&desp=' + encodeURIComponent(
-                '页面：' + page + 
-                '\n来源：' + source + 
-                '\n时间：' + time + 
-                '\n设备：' + device +
-                '\nUA：' + navigator.userAgent.substring(0, 50)
-              )
-      }).then(() => {
-        console.log('访客提醒已发送');
-      }).catch(e => {
-        console.log('推送失败', e);
-      });
+      // 获取IP地址和地理位置
+      fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(ipData => {
+          const location = ipData.city + (ipData.region ? ' ' + ipData.region : '') + (ipData.country_name ? ' ' + ipData.country_name : '');
+          const ip = ipData.ip || '未知';
+          
+          // 构建访问路径信息
+          const history = VisitorTracker.getPageHistory();
+          let pathInfo = '';
+          if (history.length > 0) {
+            pathInfo = '\n\n【访问路径】';
+            history.forEach((item, index) => {
+              pathInfo += '\n' + (index + 1) + '. ' + item.name + ' (' + item.time + ')';
+            });
+          }
+          
+          // 构建停留时长信息
+          const durations = VisitorTracker.getDurations();
+          let durationInfo = '';
+          if (durations.length > 0) {
+            durationInfo = '\n\n【页面停留时长】';
+            durations.forEach(item => {
+              durationInfo += '\n' + item.page + '：' + VisitorTracker.formatDuration(item.duration);
+            });
+          }
+          
+          // 发送推送
+          return fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'title=' + encodeURIComponent('有新访客访问网站') + 
+                  '&desp=' + encodeURIComponent(
+                    '【当前页面】' + getPageName(page) + 
+                    '\n【来源渠道】' + source + 
+                    '\n【访问时间】' + time + 
+                    '\n【设备信息】' + device +
+                    '\n【IP地址】' + ip +
+                    '\n【地理位置】' + location +
+                    pathInfo +
+                    durationInfo
+                  )
+          });
+        })
+        .then(() => {
+          console.log('访客提醒已发送');
+        })
+        .catch(e => {
+          console.log('推送失败', e);
+          // 如果IP获取失败，仍然发送基本提醒
+          fetch('https://sctapi.ftqq.com/' + SERVER_CHAN_KEY + '.send', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+            body: 'title=' + encodeURIComponent('有新访客访问网站') + 
+                  '&desp=' + encodeURIComponent(
+                    '【当前页面】' + getPageName(page) + 
+                    '\n【来源渠道】' + source + 
+                    '\n【访问时间】' + time + 
+                    '\n【设备信息】' + device +
+                    '\n【地理位置】获取失败'
+                  )
+          });
+        });
     }
+    
+    // 页面切换时记录（用于单页应用）
+    let lastPath = window.location.pathname;
+    setInterval(() => {
+      const currentPath = window.location.pathname;
+      if (currentPath !== lastPath) {
+        lastPath = currentPath;
+        VisitorTracker.recordPageView();
+      }
+    }, 1000);
   </script>
 </body>
 </html>
