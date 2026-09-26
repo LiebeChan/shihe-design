@@ -344,6 +344,70 @@
 
 
 
+    <!-- 表单区域 -->
+    <section class="forms-section">
+      <div class="form-card">
+        <h3>免费咨询</h3>
+        <form id="consultForm">
+          <div class="form-group">
+            <label>您的称呼 *</label>
+            <input type="text" name="name" required placeholder="怎么称呼您">
+          </div>
+          <div class="form-group">
+            <label>联系方式 *</label>
+            <input type="text" name="contact" required placeholder="微信或手机号">
+          </div>
+          <div class="form-group">
+            <label>项目类型</label>
+            <select name="type">
+              <option value="家装设计">家装设计</option>
+              <option value="商业空间">商业空间</option>
+              <option value="软装搭配">软装搭配</option>
+              <option value="其他">其他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>项目概况</label>
+            <textarea name="description" placeholder="房屋面积、位置、大概需求..."></textarea>
+          </div>
+          <button type="submit" class="submit-btn">提交咨询</button>
+        </form>
+        <div class="success-message" id="consultSuccess">
+          ✅ 提交成功！我会尽快联系您
+        </div>
+      </div>
+
+      <div class="form-card">
+        <h3>预约设计</h3>
+        <form id="bookingForm">
+          <div class="form-group">
+            <label>您的称呼 *</label>
+            <input type="text" name="name" required placeholder="怎么称呼您">
+          </div>
+          <div class="form-group">
+            <label>联系方式 *</label>
+            <input type="text" name="contact" required placeholder="微信或手机号">
+          </div>
+          <div class="form-group">
+            <label>房屋面积</label>
+            <input type="text" name="area" placeholder="例如：120㎡">
+          </div>
+          <div class="form-group">
+            <label>房屋位置</label>
+            <input type="text" name="location" placeholder="例如：北京朝阳区">
+          </div>
+          <div class="form-group">
+            <label>期望开工时间</label>
+            <input type="text" name="startTime" placeholder="例如：2026年3月">
+          </div>
+          <button type="submit" class="submit-btn">预约设计</button>
+        </form>
+        <div class="success-message" id="bookingSuccess">
+          ✅ 预约成功！我会尽快联系您确认时间
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ -->
     <section class="faq-section">
       <h2>常见问题</h2>
@@ -417,6 +481,9 @@
       });
     });
 
+    // 方糖推送配置 - 请替换为你的 SendKey
+    const FTQQ_SENDKEY = 'SCT390261TuBqDwEgEcbI8yWaYO17CSbP4'; // 方糖 SendKey
+    
     // 表单提交处理
     function handleSubmit(formId, successId, formType) {
       const form = document.getElementById(formId);
@@ -428,28 +495,40 @@
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
         
-        // 存储到本地（实际项目中可以发送到服务器）
-        const submissions = JSON.parse(localStorage.getItem('contactSubmissions') || '[]');
-        submissions.push({
-          type: formType,
-          data: data,
-          time: new Date().toISOString()
-        });
-        localStorage.setItem('contactSubmissions', JSON.stringify(submissions));
-        
         // 显示成功消息
         successMsg.classList.add('show');
         form.reset();
         
-        // 尝试发送邮件（使用 mailto）
-        const subject = formType === 'consult' ? '【免费咨询】新提交' : '【预约设计】新提交';
-        const body = Object.entries(data)
+        // 构建推送内容
+        const title = formType === 'consult' ? '【室合设计】新咨询' : '【室合设计】新预约';
+        const desp = Object.entries(data)
           .filter(([_, v]) => v)
-          .map(([k, v]) => `${k}: ${v}`)
-          .join('\n');
+          .map(([k, v]) => {
+            const labels = {
+              name: '称呼',
+              contact: '联系方式',
+              type: '项目类型',
+              description: '项目概况',
+              area: '房屋面积',
+              location: '房屋位置',
+              startTime: '期望开工'
+            };
+            return `${labels[k] || k}: ${v}`;
+          })
+          .join('\n\n');
         
-        // 打开邮件客户端
-        window.location.href = `mailto:y-2cells@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        // 发送到方糖
+        if (FTQQ_SENDKEY && !FTQQ_SENDKEY.includes('xxxx')) {
+          try {
+            await fetch(`https://sctapi.ftqq.com/${FTQQ_SENDKEY}.send`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: `title=${encodeURIComponent(title)}&desp=${encodeURIComponent(desp)}`
+            });
+          } catch (err) {
+            console.log('推送发送失败:', err);
+          }
+        }
         
         // 3秒后隐藏成功消息
         setTimeout(() => {
