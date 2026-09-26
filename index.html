@@ -396,16 +396,17 @@
     // 记录进入时间（用于计算本次访问时长）
     const enterTime = Date.now();
     
-    // 检查今天是否已经推送过
-    const today = new Date().toDateString();
-    const lastNotify = localStorage.getItem('shihe_lastNotify');
+    // 获取访客信息
+    const visitorId = VisitorTracker.getVisitorId();
+    const visitCount = VisitorTracker.recordVisit();
+    const lastVisit = VisitorTracker.getLastVisit();
     
-    // 如果是新访客（今天第一次访问）
-    if (lastNotify !== today) {
-      // 获取访客信息
-      const visitorId = VisitorTracker.getVisitorId();
-      const visitCount = VisitorTracker.recordVisit();
-      const lastVisit = VisitorTracker.getLastVisit();
+    // 检查这个访客是否已经通知过（使用sessionStorage，关闭页面后重置）
+    const notifiedKey = 'shihe_notified_' + visitorId;
+    const hasNotified = sessionStorage.getItem(notifiedKey);
+    
+    // 如果是新访客（这个设备/浏览器第一次访问）
+    if (!hasNotified) {
       
       // 获取访问信息
       const page = window.location.pathname || '首页';
@@ -511,8 +512,8 @@
         console.log('推送失败', e);
       });
       
-      // 记录今天已通知
-      localStorage.setItem('shihe_lastNotify', today);
+      // 标记这个访客已通知（session级别，关闭页面后重置）
+      sessionStorage.setItem(notifiedKey, 'true');
     }
     
     // 页面关闭时记录访问时长（可选：如果需要精确时长统计）
