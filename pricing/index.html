@@ -271,7 +271,7 @@
       text-align: center;
     }
   </style>
-  <link rel="stylesheet" href="../shihe-theme.css?v=20260908">
+  <link rel="stylesheet" href="../shihe-theme.css?v=20260928">
 </head>
 <body>
   <nav class="nav">
@@ -280,7 +280,7 @@
       <a href="/">首页</a>
       <a href="/about">关于我</a>
       <a href="/contact">联系我</a>
-      <a href="/pricing">设计取费</a>
+      <a href="/money#design-fees" class="pricing-nav">关于钱 · 设计取费</a>
           <a href="../styles/index.html">风格指南</a>
     </div>
   </nav>
@@ -290,7 +290,7 @@
     <p class="subtitle">三种服务模式，满足不同需求</p>
   </header>
 
-  <main class="pricing-content">
+  <main class="pricing-content"><p class="fee-boundary"><strong>以下为住宅设计服务费，不含施工费、主材费等实际工程费用。</strong><br>商业空间面议，具体服务内容以合同为准。</p><div class="fee-actions"><a href="/money#payment">查看付款节点 →</a><a href="#responsibilities">查看责任分工 ↓</a></div>
     <!-- 模式卡片 -->
     <section class="mode-cards">
       <div class="mode-card mode-1">
@@ -310,6 +310,7 @@
       </div>
     </section>
 
+    <p class="fee-caption">责任分工表：手机端可左右滑动，查看三种服务模式。</p>
     <!-- 图例 -->
     <div class="legend">
       <div class="legend-item">
@@ -331,7 +332,7 @@
     </div>
 
     <!-- 责任划分表格 -->
-    <section class="responsibility-section">
+    <section class="responsibility-section" id="responsibilities" tabindex="0" aria-label="各服务模式责任分工，可横向滚动">
       <table class="responsibility-table">
         <thead>
           <tr>
